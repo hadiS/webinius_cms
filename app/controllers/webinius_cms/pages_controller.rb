@@ -82,9 +82,10 @@ module WebiniusCms
 
 		private
 			def lookup_partials
-				@partials = Dir[WebiniusCms::Engine.root.join("app", "views", 'webinius_cms', 'pages', 'partials', '*.html.erb').to_s].collect do |path|
+				@partials = Dir[Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', '*.html.erb').to_s].collect do |path|
 					File.basename(path, '.html.erb').gsub(/_/, '') 
 				end
+				@partials << 'standard'
 			end
 
 			# Use callbacks to share common setup or constraints between actions.
