@@ -60,25 +60,23 @@
 
 			</div>
 
-			<% if WebiniusCms::Language.where(status: true).size > 1 %>
-				
-				<nav class='navbar-fixed-bottom'>		
-					<div class="container">
-						
-						<ul class="nav nav-footer">
+			<nav class='navbar-fixed-bottom'>		
+				<div class="container">
+					
+					<ul class="nav nav-footer">
+						<% if WebiniusCms::Language.where(status: true).size > 1 %>
 							<% WebiniusCms::Language.where(status: true).each do |l| %>
 								<li><%= link_to l.code, request.parameters.merge({locale: l.code}) %></li>
 							<% end %>
+						<% end %>
 
-							<% WebiniusCms::Page.roots.navigation_footer.online.order(:position).each do |page| %>
-								<li><%= link_to set_lang(page, "title"), nested_page_path(page) %></li>
-							<% end %>
-						</ul>
+						<% WebiniusCms::Page.roots.navigation_footer.online.order(:position).each do |page| %>
+							<li><%= link_to set_lang(page, "title"), nested_page_path(page) %></li>
+						<% end %>						
+					</ul>
 
-					</div>
-				</nav>
-
-			<% end %>
+				</div>
+			</nav>
 
 		</div>
 
