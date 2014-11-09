@@ -34,7 +34,7 @@ module WebiniusCms
 		end
 
 		def generate_slug
-			self.slug = de_title.parameterize
+			self.slug = en_title.parameterize
 		end
 
 		def method_missing(method, *args, &block)
