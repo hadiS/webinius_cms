@@ -66,10 +66,8 @@
 					<div class="container">
 						
 						<ul class="nav nav-footer">
-							<% if I18n.locale == :de %>
-								<li><%= link_to 'EN', request.parameters.merge({locale: 'en'}) %></li>
-							<% else %>
-								<li><%= link_to 'DE', request.parameters.merge({locale: 'de'}) %></li>
+							<% WebiniusCms::Language.where(status: true).each do |l| %>
+								<li><%= link_to l.code, request.parameters.merge({locale: l.code}) %></li>
 							<% end %>
 
 							<% WebiniusCms::Page.roots.navigation_footer.online.order(:position).each do |page| %>

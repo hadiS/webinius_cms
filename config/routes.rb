@@ -23,7 +23,7 @@ WebiniusCms::Engine.routes.draw do
 	get 'login', to: 'sessions#new', as: 'login'
 	get 'logout', to: 'sessions#destroy', as: 'logout'
 
-	scope "(:locale)", :locale => /de|en/ do
+	scope "(:locale)" do
 		
 		resources :pages, path: "", except: [:index, :new, :create, :update, :edit, :destroy]
 

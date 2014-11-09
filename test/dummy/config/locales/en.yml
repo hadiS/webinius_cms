@@ -1,52 +1,7 @@
 en:
   site:
-    search_phrase: Enter search tag
-    choose_category: Choose Category
-    no_result: 'There are no search results matching your criteria at the moment'
-    no_jobs: 'There are no jobs currently'
-    category: Category
-    location: Location
-    job: 'Job'
-    apply_now: 'Apply now'
-    apply_for: 'Application'
-    initial_apply_for: 'Unsolicited Application'
-    apply_for_detail: 'Apply for '
-    application_success: 'Thank your sending us your application, which we herewith acknowledge. We will get back to you after examinating the documents.'
-    cancel: Cancel
-    send: Send
-    login: Customer Login
-    branche: Sector
-    enter_address: Enter your address here...
-    show_route: Show route
-    agreement: Hereby I agree that my enclosed personal data will be saved in the SAFIDA database for recruiting reasons until revocation.
-    capt: Answer is not correct
-    months: Month/s
-    weeks: Week/s
-    spam_text: Answer is required to avoid spam
-    salary: Gross per annum
-    desired_salary: Desired salary
-    employment_place: Place of employment
-    deadline: Cancellation period
-    locally: only locally
-    flexible: flexible
-    required_fields: These are required fields
-    flash: Subscribe to Newsletter
-    flash_success: Thank you for subscribing to our flash.
   activerecord:
     attributes:
-      flash:
-        firstname: Vorname
-        lastname: Nachname
-        email: Email
-      applicant:
-        firstname: First name
-        lastname: Last name
-        email: Email
-        telephone: Telephne
-        content: Message
-        employment_place: Place of employment
-        deadline: Cancellation period
-        salary: Desired salary
   date:
     abbr_day_names:
     - Sun
