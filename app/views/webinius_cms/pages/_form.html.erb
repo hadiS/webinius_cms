@@ -1,0 +1,107 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success"> 
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+
+<%= form_for @page do |f| %>
+  
+  <!-- <div class="well">
+
+    <%#= f.label :picture, "Bild" %>
+    <%#= f.file_field :picture %>
+    <%#= errors_for @page, :picture %>
+
+    <%# if @page.picture.present? %>
+      <div class="form-group">
+        <%#= f.label :remove_picture, 'Bild entfernen' %>
+        <div>
+          <%#= f.check_box :remove_picture %>
+          <%#= errors_for @page, :remove_picture %>
+        </div>  
+      </div>
+      <%#= image_tag(@page.picture_url(:thumbnail)) %>
+    <%# end %>
+
+  </div> -->
+
+  <%= f.hidden_field :parent_id %>
+
+  <div class="well">
+
+    <ul class="nav nav-tabs">
+      <% WebiniusCms::Language.all.each do |lang| %>
+        <li class="<%= 'active' if lang.code == 'de' %>"><a href="#<%= lang.name %>" data-toggle="tab"><%= lang.name %></a></li>
+      <% end %>
+    </ul>
+    <div class="tab-content">
+      <% WebiniusCms::Language.all.each do |lang| %>
+        <div class="tab-pane <%= 'active' if lang.code == 'de' %>" id="<%= lang.name %>">
+          
+          <div class="form-group">
+            <%= f.label :"#{lang.code}_title", 'Name' %>
+            <div>
+              <%= f.text_field :"#{lang.code}_title", class: 'form-control' %>
+              <%= errors_for @page, :"#{lang.code}_title" %>
+            </div>  
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :"#{lang.code}_content", "Text" %>
+            <div>
+              <%= f.text_area :"#{lang.code}_content", rows: 15, class: 'text form-control' %>
+              <%= errors_for @page, :"#{lang.code}_content" %>
+            </div>  
+          </div>
+
+          <div class="form-group">
+            <%= f.label :"#{lang.code}_meta_description", "Meta description" %>
+            <div>
+              <%= f.text_field :"#{lang.code}_meta_description", class: 'form-control' %>
+              <%= errors_for @page, :"#{lang.code}_meta_description" %>
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="well">
+
+    <div class="form-group">
+      <%= f.label :kind, 'Content file' %>
+      <div>
+        <%= f.select :kind, @partials.collect { |p| [p, p] } , include_blank: false, class: 'form-control' %>
+        <%= errors_for @page, :kind %>
+      </div>  
+    </div>
+
+    <div class="form-group">
+      <%= f.label :navigation_type, 'Navigation Type' %>
+      <div>
+        <%= f.select :navigation_type, [['main', 'main'], ['footer', 'footer']], include_blank: false, class: 'form-control' %>
+        <%= errors_for @page, :navigation_type %>
+      </div>  
+    </div>
+
+    <div class="form-group">
+      <%= f.label :status, "Online" %>
+      <div>
+        <%= f.check_box :status %>
+        <%= errors_for @page, :status %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button 'Save', class: 'btn btn-info' %>
+    <%= link_to 'Cancel', pages_path, class: 'btn btn-small' %>
+  </div>
+
+<% end %>
+
+

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: false
+  ancestry: MyString
+  kind: MyString
+  position: 1
+  slug: MyString
+  properties: 
+
+two:
+  status: false
+  ancestry: MyString
+  kind: MyString
+  position: 1
+  slug: MyString
+  properties: 

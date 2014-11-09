@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Safida</title>
+  <%= stylesheet_link_tag    "webinius_cms/admin", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "webinius_cms/admin", "data-turbolinks-track" => true %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="container">
+
+    <%= yield %>
+
+  </div> <!-- /container -->
+
+
+</body>
+</html>

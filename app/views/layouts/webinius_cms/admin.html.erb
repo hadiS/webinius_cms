@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Safida</title>
+	<%= stylesheet_link_tag    "webinius_cms/admin", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "webinius_cms/admin", "data-turbolinks-track" => true %>
+	<%#= javascript_include_tag "tinymce/tinymce.min" %>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%= csrf_meta_tags %>
+</head>
+<body>
+
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		
+		<div class="container">
+			
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+	      </button>
+			</div>
+			
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class=<%= controller_name == 'pages' ? 'active' : ''%>><%= link_to 'Pages', pages_path %></li>
+					<li class=<%= controller_name == 'languages' ? 'active' : ''%>><%= link_to 'Languages', languages_path %></li>
+					<li class=<%= controller_name == 'users' ? 'active' : ''%>><%= link_to 'Users', users_path %></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><%= link_to 'Logout', logout_path %></li>
+				</ul>
+			</div>
+
+		</div>
+		
+	</nav>
+
+	<div class="container">
+
+		<%= yield %>
+
+	</div> <!-- /container -->
+
+
+</body>
+</html>

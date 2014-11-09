@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h3>Pages</h3>
+</div>
+
+<table class='table pages'>
+  <thead>
+    <tr class='info'>
+      <th class='title'>Page</th>
+      <th class='status'>Online</th>
+      <th class='status'>Navigation Type</th>
+      <th class='actions'>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= list_nested_pages(@pages) %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Create new page', new_page_path, :class => 'btn btn-success' %>

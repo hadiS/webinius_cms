@@ -1,0 +1,31 @@
+<div class="page-header">
+	<h3>Users</h3>
+</div>
+
+<table class='table pages'>
+	<thead>
+		<tr class='info info'>
+			<th class='title'>Name</th>
+			<th class='status'>Username</th>
+			<th class='actions'>Action</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%= user.name %></td>
+				<td><%= user.username %></td>
+				<td>
+					<%= link_to content_tag(:i, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_user_path(user), :class => 'btn btn-xs btn-info' %>
+					<%= link_to content_tag(:i, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', user, :class => 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Bist du sicher?' } if user.name != 'admin' %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<br>
+
+<%= link_to 'Create new user', new_user_path, :class => 'btn btn-success' %>
+

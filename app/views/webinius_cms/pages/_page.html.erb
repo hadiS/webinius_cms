@@ -1,0 +1,12 @@
+<tr>
+	<td style="padding-left: <%= page.depth == 0 ? 8 : page.depth * 30 %>px" ><%= page.properties['de_title'] %></td>
+	<td><%= content_tag(:span, '', :class => 'glyphicon glyphicon-ok') if page.status %></td>
+	<td><%= page.navigation_type %></td>
+	<td>
+		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus')+' Add', new_page_path(parent_id: page.id), :class => 'btn btn-xs btn-success' %>
+		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_page_path(page), :class => 'btn btn-xs btn-info' %>
+		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-up'), higher_page_path(page), :class => 'btn btn-xs' %>
+		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-down'), lower_page_path(page), :class => 'btn btn-xs' %>
+		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', page, :class => 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Bist du sicher?' } %>
+	</td>
+</tr>
