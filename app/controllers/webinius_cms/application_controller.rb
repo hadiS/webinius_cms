@@ -7,7 +7,7 @@ module WebiniusCms
 		def set_locale
 			if params[:locale].present?
 				Rails.logger.info params[:locale]
-				lang = Language.where(code: params[:locale], status: true).first
+				lang = Language.where(code: params[:locale]).first
 				I18n.locale = lang.present? ? params[:locale] : (raise ActionController::RoutingError.new('Not Found'))
 			else
 				@default_language ||= Language.where(status: true, default: true).first
