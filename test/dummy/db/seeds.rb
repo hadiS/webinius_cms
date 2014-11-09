@@ -8,8 +8,7 @@
 
 WebiniusCms::Language.destroy_all
 
-WebiniusCms::Language.create(name: 'Deutsch', code: 'de', status: true, default: true)
-WebiniusCms::Language.create(name: 'English', code: 'en', status: true, default: false)
+WebiniusCms::Language.create(name: 'English', code: 'en', status: true, default: true)
 
 WebiniusCms::User.destroy_all
 
