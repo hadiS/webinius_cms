@@ -1,3 +1,5 @@
 = WebiniusCms
 
-This project rocks and uses MIT-LICENSE.
+Version 0.0.12
+
+Readme: ToDo
