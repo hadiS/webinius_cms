@@ -7,6 +7,6 @@
 		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_page_path(page), :class => 'btn btn-xs btn-info' %>
 		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-up'), higher_page_path(page), :class => 'btn btn-xs' %>
 		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-down'), lower_page_path(page), :class => 'btn btn-xs' %>
-		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', page, :class => 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Bist du sicher?' } %>
+		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', page, :class => 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
 	</td>
 </tr>

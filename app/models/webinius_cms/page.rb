@@ -7,7 +7,7 @@ module WebiniusCms
 		acts_as_list scope: [:ancestry]
 
 		# validates :de_title, uniqueness: true, presence: true, exclusion: {in: %w[admin login]}
-		validates_presence_of :de_title
+		validates_presence_of :en_title
 
 		before_validation :generate_slug
 

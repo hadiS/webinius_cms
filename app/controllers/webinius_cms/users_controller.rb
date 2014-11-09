@@ -35,7 +35,7 @@ module WebiniusCms
 
 		respond_to do |format|
 			if @user.save
-				format.html { redirect_to edit_user_path(@user), notice: 'Neuer User wurde erfolgreich erstellen.' }
+				format.html { redirect_to edit_user_path(@user), notice: 'New user created successfully.' }
 				format.json { render action: 'show', status: :created, location: @user }
 			else
 				format.html { render action: 'new' }
@@ -49,7 +49,7 @@ module WebiniusCms
 	def update
 		respond_to do |format|
 			if @user.update(user_params)
-				format.html { redirect_to edit_user_path(@user), notice: 'User erfolgreich editiert.' }
+				format.html { redirect_to edit_user_path(@user), notice: 'User updated successfully.' }
 				format.json { head :no_content }
 			else
 				format.html { render action: 'edit' }

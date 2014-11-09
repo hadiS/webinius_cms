@@ -37,7 +37,7 @@ module WebiniusCms
 
 			respond_to do |format|
 				if @page.save
-					format.html { redirect_to edit_page_url(@page), notice: 'Neue Seite wurde erfolgreich erstellt.' }
+					format.html { redirect_to edit_page_url(@page), notice: 'New Page was created.' }
 					format.json { render action: 'show', status: :created, location: @page }
 				else
 					format.html { render action: 'new' }
@@ -51,7 +51,7 @@ module WebiniusCms
 		def update
 			respond_to do |format|
 				if @page.update(page_params)
-					format.html { redirect_to edit_page_url(@page), notice: 'Seite wurde erfolgreich editiert.' }
+					format.html { redirect_to edit_page_url(@page), notice: 'Page was updated successfully.' }
 					format.json { head :no_content }
 				else
 					format.html { render action: 'edit' }
@@ -85,7 +85,9 @@ module WebiniusCms
 				@partials = Dir[Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', '*.html.erb').to_s].collect do |path|
 					File.basename(path, '.html.erb').gsub(/_/, '') 
 				end
+				Rails.logger.info @partials.inspect
 				@partials << 'standard'
+				Rails.logger.info @partials.inspect
 			end
 
 			# Use callbacks to share common setup or constraints between actions.
