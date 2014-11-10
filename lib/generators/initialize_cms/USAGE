@@ -1,0 +1,10 @@
+Description:
+    Copies necessary files into the main rails project.
+
+Example:
+    rails generate initialize_cms
+
+    This will create:
+        app/helpers/webinius_cms/pages_helper.rb
+        app/views/layouts/webinius_cms/sites.html.erb
+        app/views/layouts/webinius_cms/_admin_top_navigation.html.erb
