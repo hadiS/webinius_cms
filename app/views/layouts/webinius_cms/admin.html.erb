@@ -30,6 +30,7 @@
 					<li class=<%= controller_name == 'pages' ? 'active' : ''%>><%= link_to 'Pages', pages_path %></li>
 					<li class=<%= controller_name == 'languages' ? 'active' : ''%>><%= link_to 'Languages', languages_path %></li>
 					<li class=<%= controller_name == 'users' ? 'active' : ''%>><%= link_to 'Users', users_path %></li>
+					<%= render partial: 'layouts/webinius_cms/admin_top_navigation' %>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
