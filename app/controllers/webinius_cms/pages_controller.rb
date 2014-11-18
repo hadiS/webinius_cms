@@ -85,9 +85,7 @@ module WebiniusCms
 				@partials = Dir[Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', '*.html.erb').to_s].collect do |path|
 					File.basename(path, '.html.erb').gsub(/_/, '') 
 				end
-				Rails.logger.info @partials.inspect
 				@partials << 'standard'
-				Rails.logger.info @partials.inspect
 			end
 
 			# Use callbacks to share common setup or constraints between actions.
