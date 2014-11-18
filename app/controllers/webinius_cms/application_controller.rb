@@ -12,14 +12,7 @@ module WebiniusCms
 				@default_language ||= Language.where(status: true).first
 				I18n.locale = @default_language.code
 			end
-			# Rails.application.routes.default_url_options[:locale]= I18n.locale
 		end
-
-		def nested_page_path(page, args = {})
-			url_params = args.present? ? "?#{args.to_query}" : ''
-			"/#{I18n.locale}/" + (page.ancestors + [page]).map(&:to_param).join("/") + url_params
-		end
-		helper_method :nested_page_path
 
 		private
 

@@ -17,6 +17,11 @@ module WebiniusCms
 			text = receiver.send("#{I18n.locale}_#{method_name}")
 			text.present? ? text : receiver.send("de_#{method_name}")
 		end
+
+		def nested_page_path(page, args = {})
+			url_params = args.present? ? "?#{args.to_query}" : ''
+			"/#{I18n.locale}/" + (page.ancestors + [page]).map(&:to_param).join("/") + url_params
+		end
 	
 	end
 end
