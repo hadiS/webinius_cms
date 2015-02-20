@@ -2,7 +2,7 @@
 ready = ->
 	tinymce.init
 		selector: 'textarea.text'
-		# plugins: "link, textcolor, table, code"
+		plugins: "link, textcolor, table, code"
 		toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist outdent indent | link unlink | forecolor fontselect fontsizeselect"
 		tools: "inserttable"
 		extended_valid_elements: 'i[class]'

@@ -8,7 +8,6 @@ Gem::Specification.new do |s|
   s.name        = "webinius_cms"
   s.version     = WebiniusCms::VERSION
   s.authors     = ["Hadi Samadi"]
-  s.email       = ["contact@webinius.at"]
   s.homepage    = "http://www.webinius.at"
   s.summary     = "Simple CMS Engine"
   s.description = "Coming later"
