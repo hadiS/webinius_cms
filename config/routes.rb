@@ -11,7 +11,7 @@ WebiniusCms::Engine.routes.draw do
 		resources :languages
 
 		resources :pages, only: [:index, :new, :create, :update, :edit, :destroy] do
-			member do 
+			member do
 				get 'higher'
 				get 'lower'
 			end
@@ -24,7 +24,7 @@ WebiniusCms::Engine.routes.draw do
 	get 'logout', to: 'sessions#destroy', as: 'logout'
 
 	scope "(:locale)", :locale => /en/ do
-		
+
 		resources :pages, path: "", except: [:index, :new, :create, :update, :edit, :destroy]
 
 		get "*id", to: 'pages#show'

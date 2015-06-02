@@ -7,7 +7,7 @@ module WebiniusCms
 		before_action :authorize, except: :show
 
 		before_action :set_page, only: [:show, :edit, :update, :destroy, :higher, :lower]
-		before_action :lookup_partials, only: [:new, :edit]
+		before_action :lookup_partials, only: [:new, :edit, :create]
 
 		# GET /pages
 		# GET /pages.json
@@ -83,7 +83,7 @@ module WebiniusCms
 		private
 			def lookup_partials
 				@partials = Dir[Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', '*.html.erb').to_s].collect do |path|
-					File.basename(path, '.html.erb').gsub(/_/, '') 
+					File.basename(path, '.html.erb').gsub(/_/, '')
 				end
 				@partials << 'standard'
 			end

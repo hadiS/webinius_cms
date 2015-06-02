@@ -11,7 +11,7 @@ module WebiniusCms
 		# GET /languages
 		# GET /languages.json
 		def index
-			@languages = Language.all
+			@languages = Language.order('created_at ASC')
 		end
 
 		# GET /languages/1

@@ -3,13 +3,13 @@ module WebiniusCms
 		protect_from_forgery with: :exception
 
 		before_action :set_locale
-		
+
 		def set_locale
 			if params[:locale].present?
 				lang = Language.where(code: params[:locale]).first
 				I18n.locale = lang.present? ? params[:locale] : (raise ActionController::RoutingError.new('Not Found'))
 			else
-				@default_language ||= Language.where(status: true).first
+				@default_language ||= Language.where(default: true).first
 				I18n.locale = @default_language.code
 			end
 		end
