@@ -1,5 +1,5 @@
 <tr>
-	<td style="padding-left: <%= page.depth == 0 ? 8 : page.depth * 30 %>px" ><%= page.properties['en_title'] %></td>
+	<td style="padding-left: <%= page.depth == 0 ? 8 : page.depth * 30 %>px" ><%= page.properties["#{I18n.locale}_title"] %></td>
 	<td><%= content_tag(:span, '', :class => 'glyphicon glyphicon-ok') if page.status %></td>
 	<td><%= page.navigation_type %></td>
 	<td>

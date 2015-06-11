@@ -34,8 +34,11 @@ module WebiniusCms
 			@language = Language.new(language_params)
 
 			respond_to do |format|
-				if @language.save
-					format.html { redirect_to edit_language_path(@language), notice: 'Language was created successfully.' }
+        if @language.save
+          if @language.default
+            Language.restore_default(@language)
+          end
+					format.html { redirect_to languages_url, notice: 'Language was created successfully.' }
 					format.json { render action: 'show', status: :created, location: @language }
 				else
 					format.html { render action: 'new' }
@@ -49,7 +52,10 @@ module WebiniusCms
 		def update
 			respond_to do |format|
 				if @language.update(language_params)
-					format.html { redirect_to edit_language_path(@language), notice: 'Language was updated successfully.' }
+          if @language.default
+            Language.restore_default(@language)
+          end
+					format.html { redirect_to languages_url, notice: 'Language was updated successfully.' }
 					format.json { head :no_content }
 				else
 					format.html { render action: 'edit' }

@@ -6,8 +6,7 @@ module WebiniusCms
 
 		acts_as_list scope: [:ancestry]
 
-		# validates :de_title, uniqueness: true, presence: true, exclusion: {in: %w[admin login]}
-		# validates_presence_of :de_title
+		validate :validate_title
 
 		before_validation :generate_slug
 
@@ -16,7 +15,7 @@ module WebiniusCms
 		scope :navigation_main, -> { where(navigation_type: 'main') }
 
 		Language.all.each do |lang|
-			["#{lang.code}_title", "#{lang.code}_content", "#{lang.code}_meta_description"].each do |key|
+			["#{lang.code}_title", "#{lang.code}_content", "#{lang.code}_meta_description", "#{lang.code}_slug"].each do |key|
 				# scope "has_#{key}", lambda { |value| where("properties @> hstore(?, ?)", key, value) }
 
 				define_method(key) do
@@ -30,15 +29,27 @@ module WebiniusCms
 		end
 
 		def to_param
-			slug
+			# slug
+      send(:"#{I18n.locale}_slug")
 		end
 
+    def validate_title
+      Language.online.each do |lang|
+        if send(:"#{lang.code}_title").blank?
+          errors.add(:"#{lang.code}_title", "can't be blank")
+        end
+      end
+    end
+
 		def generate_slug
-			self.slug = en_title.parameterize
+			# self.slug = en_title.parameterize
+      Language.all.each do |lang|
+        self.properties = (properties || {}).merge("#{lang.code}_slug" => send(:"#{lang.code}_title").parameterize)
+      end
 		end
 
 		def method_missing(method, *args, &block)
-			if method.to_s =~ /.*_(title|content|meta_description)$/
+			if method.to_s =~ /.*_(title|content|meta_description|slug)$/
 				# scope "has_#{key}", lambda { |value| where("properties @> hstore(?, ?)", key, value) }
 				Page.instance_eval do
 					define_method(method.to_s) do
