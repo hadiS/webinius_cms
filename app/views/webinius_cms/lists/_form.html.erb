@@ -1,0 +1,16 @@
+<%= form_for @list do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, 'Name' %>
+    <div class="">
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= errors_for @list, :name %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button 'Save', class: 'btn btn-info' %>
+    <%= link_to 'Cancel', lists_path, class: 'btn btn-small' %>
+  </div>
+
+<% end %>
