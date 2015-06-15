@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h3>List Items</h3>
+</div>
+
+<table class='table pages'>
+  <thead>
+    <tr class='info'>
+      <th class='title'>Title</th>
+      <th class='status'>Online</th>
+      <th class='actions'>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @list_items.each do |list_item| %>
+      <tr>
+        <td style="padding-left: 8px"><%= list_item.properties["#{I18n.locale}_title"] %></td>
+        <td><%= content_tag(:span, '', :class => 'glyphicon glyphicon-ok') if list_item.status %></td>
+        <td>
+          <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_list_list_item_path(@list, list_item), :class => 'btn btn-xs btn-info' %>
+          <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', list_list_item_path(@list, list_item), :class => 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Create new list item', new_list_list_item_path(@list), :class => 'btn btn-success' %>

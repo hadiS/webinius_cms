@@ -30,4 +30,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts_as_list', '~> 0.5.0'
   s.add_dependency 'will_paginate', '~> 3.0.7'
   s.add_dependency 'will_paginate-bootstrap', '~> 1.0.1'
+  s.add_dependency 'carrierwave', '~> 0.10.0'
+
+  s.add_development_dependency 'byebug'
+  s.add_development_dependency 'web-console', '~> 2.0'
+
 end

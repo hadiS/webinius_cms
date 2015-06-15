@@ -42,3 +42,8 @@ thead tr {
 label {
 	margin-bottom: 2px;
 }
+
+.field_with_errors, #error_explanation {
+  color: #B40000;
+  border-color: #B40000;
+}

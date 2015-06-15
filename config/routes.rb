@@ -1,6 +1,5 @@
 WebiniusCms::Engine.routes.draw do
 
-  resources :lists
   resources :users
 
   resources :pages
@@ -17,6 +16,10 @@ WebiniusCms::Engine.routes.draw do
 				get 'lower'
 			end
 		end
+
+    resources :lists do
+      resources :list_items
+    end
 	end
 
 	resources :sessions

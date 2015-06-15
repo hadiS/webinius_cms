@@ -4,7 +4,7 @@
 	<title>Webinius CMS</title>
 	<%= stylesheet_link_tag    "webinius_cms/sites", media: "all", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "webinius_cms/sites", "data-turbolinks-track" => true %>
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name='description' content='<%= set_lang(@page, "meta_description") if @page %>' />
 	<%= csrf_meta_tags %>
@@ -13,7 +13,7 @@
 
 	<div class="site-wrapper">
 
-		
+
 		<div class="container">
 
 			<div class="row">
@@ -44,9 +44,9 @@
 				    				<% end %>
 				    			</li>
 				    		<% end %>
-				    	</ul>	
+				    	</ul>
 				    </div>
-						
+
 					</nav>
 				</div>
 
@@ -54,15 +54,21 @@
 
 			<div class='row content'>
 
+        <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+
 				<div class="col-xs-12">
 					<%= render partial: "webinius_cms/pages/partials/#{@page.kind}" if @page %>
 				</div>
 
 			</div>
 
-			<nav class='navbar-fixed-bottom'>		
+			<nav class='navbar-fixed-bottom'>
 				<div class="container">
-					
+
 					<ul class="nav nav-footer">
 						<% if WebiniusCms::Language.where(status: true).size > 1 %>
 							<% WebiniusCms::Language.where(status: true).each do |l| %>
