@@ -63,6 +63,24 @@
   </div>
 
   <div class="well">
+    <div class="form-group">
+      <%= f.label :picture, 'Image' %>
+      <div>
+        <%= f.file_field :picture %>
+        <%= f.hidden_field :picture_cache %>
+        <%= errors_for @page, :picture %>
+      </div>
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :remove_picture %> Remove Image
+      </label>
+    </div>
+    <%= image_tag @page.picture.thumb.url if @page.picture? %>
+  </div>
+
+  <div class="well">
 
     <div class="form-group">
       <%= f.label :kind, 'Content file' %>

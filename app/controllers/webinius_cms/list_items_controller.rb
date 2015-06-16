@@ -72,7 +72,7 @@ module WebiniusCms
           end
           lang_field
         end.flatten!
-        params.require(:list_item).permit(:status, *dynamic_fields)
+        params.require(:list_item).permit(:status, :picture, *dynamic_fields)
       end
   end
 end

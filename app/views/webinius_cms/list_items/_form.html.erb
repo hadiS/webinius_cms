@@ -48,6 +48,24 @@
   </div>
 
   <div class="well">
+    <div class="form-group">
+      <%= f.label :picture, 'Image' %>
+      <div>
+        <%= f.file_field :picture %>
+        <%= f.hidden_field :picture_cache %>
+        <%= errors_for @list_item, :picture %>
+      </div>
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :remove_picture %> Remove Image
+      </label>
+    </div>
+    <%= image_tag @list_item.picture.thumb.url if @list_item.picture? %>
+  </div>
+
+  <div class="well">
 
     <div class="form-group">
       <%= f.label :status, "Online" %>

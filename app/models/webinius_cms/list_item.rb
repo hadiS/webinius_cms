@@ -9,6 +9,8 @@ module WebiniusCms
 
     scope :online, -> { where(status: true) }
 
+    mount_uploader :picture, PictureUploader
+
     Language.all.each do |lang|
       ["#{lang.code}_title", "#{lang.code}_content", "#{lang.code}_meta_description", "#{lang.code}_slug"].each do |key|
         # scope "has_#{key}", lambda { |value| where("properties @> hstore(?, ?)", key, value) }
