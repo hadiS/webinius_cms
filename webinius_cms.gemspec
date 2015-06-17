@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "sass-rails"
   s.add_dependency 'turbolinks'
   s.add_dependency 'ancestry', '~> 2.1.0'
-  s.add_dependency 'bootstrap-sass', '~> 3.3.4'
+  s.add_dependency 'bootstrap-sass', '~> 3.3.5'
   s.add_dependency 'font-awesome-sass', '~> 4.3.0'
   s.add_dependency 'acts_as_list', '~> 0.5.0'
   s.add_dependency 'will_paginate', '~> 3.0.7'
