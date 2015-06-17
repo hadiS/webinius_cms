@@ -19,10 +19,12 @@ module WebiniusCms
     # GET /list_items/new
     def new
       @list_item = ListItem.new
+      @list_item.documents.build
     end
 
     # GET /list_items/1/edit
     def edit
+      @list_item.documents.build
     end
 
     # POST /list_items
@@ -72,7 +74,7 @@ module WebiniusCms
           end
           lang_field
         end.flatten!
-        params.require(:list_item).permit(:status, :picture, *dynamic_fields)
+        params.require(:list_item).permit(:status, :picture, *dynamic_fields, documents_attributes: [:id, :name, :document, :document_cache, :_destroy])
       end
   end
 end

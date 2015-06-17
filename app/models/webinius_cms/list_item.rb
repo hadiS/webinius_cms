@@ -3,6 +3,9 @@ module WebiniusCms
 
     belongs_to :list, class_name: 'WebiniusCms::List', foreign_key: :webinius_cms_list_id
 
+    has_many :documents, as: :docable, dependent: :destroy
+    accepts_nested_attributes_for :documents, allow_destroy: true, reject_if: proc { |attributes| attributes['document'].blank? && attributes['document_cache'].blank? }
+
     validate :validate_title
 
     before_validation :generate_slug

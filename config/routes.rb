@@ -4,6 +4,8 @@ WebiniusCms::Engine.routes.draw do
 
   resources :pages
 
+  resources :documents, only: :show
+
 	scope '/admin' do
 
 		resources :users

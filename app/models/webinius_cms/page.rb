@@ -4,6 +4,9 @@ module WebiniusCms
 
 		#mount_uploader :picture, PageImagesUploader
 
+    has_many :documents, as: :docable, dependent: :destroy
+    accepts_nested_attributes_for :documents, allow_destroy: true, reject_if: proc { |attributes| attributes['document'].blank? && attributes['document_cache'].blank? }
+
 		acts_as_list scope: [:ancestry]
 
 		validate :validate_title

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  docable_id: 
+  docable_type: Docable
+  name: MyString
+
+two:
+  docable_id: 
+  docable_type: Docable
+  name: MyString

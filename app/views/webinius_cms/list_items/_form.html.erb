@@ -2,7 +2,7 @@
 
   <% if @list_item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@list_item.errors.count, "error") %> prohibited this testt from being saved.</h2>
+      <h2><%= pluralize(@list_item.errors.count, "error") %> prohibited this page from being saved.</h2>
     </div>
   <% end %>
 
@@ -63,6 +63,46 @@
       </label>
     </div>
     <%= image_tag @list_item.picture.thumb.url if @list_item.picture? %>
+  </div>
+
+  <div class="well">
+    <span><strong>Downloads</strong></span>
+
+      <%= f.fields_for :documents do |document| %>
+
+          <% if document.object.new_record? %>
+
+            <br>
+            <div><strong>Add new file</strong></div>
+            <div class="form-group">
+              <div>
+                <%= document.file_field :document %>
+                <%= document.hidden_field :document_cache %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= document.label :name, 'Name' %>
+              <div>
+                <%= document.text_field :name, class: 'form-control' %>
+                <%= errors_for document.object, :name %>
+              </div>
+            </div>
+
+          <% else %>
+
+            <div class="checkbox">
+              <%= link_to document_path(document.object) do %>
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= document.object.name %>
+              <% end %>
+              <label class='horizontal-space'>
+                <%= document.check_box :_destroy %> Remove Document
+              </label>
+            </div>
+
+          <% end %>
+
+      <% end %>
   </div>
 
   <div class="well">

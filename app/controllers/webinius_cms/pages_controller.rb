@@ -23,10 +23,12 @@ module WebiniusCms
     # GET /pages/new
     def new
       @page = Page.new(parent_id: params[:parent_id])
+      @page.documents.build
     end
 
     # GET /pages/1/edit
     def edit
+      @page.documents.build
     end
 
     # POST /pages
@@ -48,6 +50,7 @@ module WebiniusCms
     # PATCH/PUT /pages/1
     # PATCH/PUT /pages/1.json
     def update
+      @page.docs = params[:page][:docs] if params[:page][:docs].present?
       respond_to do |format|
         if @page.update(page_params)
           format.html { redirect_to pages_url, notice: 'Page was updated successfully.' }
@@ -107,7 +110,8 @@ module WebiniusCms
           end
           lang_field
         end.flatten!
-        params.require(:page).permit(:parent_id, :status, :map_address, :kind, :picture, :navigation_type, :remove_picture, :picture, *dynamic_fields)
+        params.require(:page).permit(:parent_id, :status, :map_address, :kind, :picture, :navigation_type,
+          :remove_picture, :picture, :picture_cache, :docs, *dynamic_fields, documents_attributes: [:id, :name, :document, :document_cache, :_destroy])
       end
   end
 end
