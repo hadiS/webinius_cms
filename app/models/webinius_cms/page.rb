@@ -20,7 +20,7 @@ module WebiniusCms
     mount_uploader :picture, PictureUploader
 
 		Language.all.each do |lang|
-			["#{lang.code}_title", "#{lang.code}_content", "#{lang.code}_meta_description", "#{lang.code}_slug"].each do |key|
+			["#{lang.code}_title", "#{lang.code}_content", "#{lang.code}_meta_description", "#{lang.code}_slug", "#{lang.code}_description"].each do |key|
 				# scope "has_#{key}", lambda { |value| where("properties @> hstore(?, ?)", key, value) }
 
 				define_method(key) do
@@ -54,7 +54,7 @@ module WebiniusCms
 		end
 
 		def method_missing(method, *args, &block)
-			if method.to_s =~ /.*_(title|content|meta_description|slug)$/
+			if method.to_s =~ /.*_(title|content|meta_description|slug|description)$/
 				# scope "has_#{key}", lambda { |value| where("properties @> hstore(?, ?)", key, value) }
 				Page.instance_eval do
 					define_method(method.to_s) do

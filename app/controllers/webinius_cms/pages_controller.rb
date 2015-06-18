@@ -103,7 +103,7 @@ module WebiniusCms
       # Never trust parameters from the scary internet, only allow the white list through.
       def page_params
         langs = Language.all
-        dynamic_fields = %w[title content meta_description slug].collect do |field|
+        dynamic_fields = %w[title content meta_description slug description].collect do |field|
           lang_field = []
           langs.each do |lang|
             lang_field << "#{lang.code}_#{field}"
