@@ -34,10 +34,12 @@ module WebiniusCms
     # Create different versions of your uploaded files:
     version :thumb do
       process :resize_to_fit => [WebiniusCms.picture_size_thumb, nil]
+      process :quality => 30
     end
 
     version :big do
       process :resize_to_fit => [WebiniusCms.picture_size_big, nil]
+      process :quality => 30
     end
 
     # Add a white list of extensions which are allowed to be uploaded.
