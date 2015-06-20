@@ -3,6 +3,7 @@ module WebiniusCms
 		has_ancestry
 
 		#mount_uploader :picture, PageImagesUploader
+    has_one :list, class_name: 'WebiniusCms::List', foreign_key: :webinius_cms_page_id
 
     has_many :documents, as: :docable, dependent: :destroy
     accepts_nested_attributes_for :documents, allow_destroy: true, reject_if: proc { |attributes| attributes['document'].blank? && attributes['document_cache'].blank? }

@@ -29,9 +29,9 @@ module WebiniusCms
       @list = List.new(list_params)
 
       if @list.save
-        unless File.exists?(Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', "_#{@list.name.parameterize}.html.erb").to_s)
-          File.open(Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', "_#{@list.name.parameterize}.html.erb").to_s, "w").close
-        end
+        # unless File.exists?(Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', "_#{@list.name.parameterize}.html.erb").to_s)
+        #   File.open(Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', "_#{@list.name.parameterize}.html.erb").to_s, "w").close
+        # end
         redirect_to lists_url, notice: 'List was successfully created.'
       else
         render :new
@@ -50,9 +50,9 @@ module WebiniusCms
     # DELETE /lists/1
     def destroy
       @list.destroy
-      if File.exists?(Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', "_#{@list.name.parameterize}.html.erb").to_s)
-        File.delete(Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', "_#{@list.name.parameterize}.html.erb").to_s)
-      end
+      # if File.exists?(Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', "_#{@list.name.parameterize}.html.erb").to_s)
+      #   File.delete(Rails.root.join("app", "views", 'webinius_cms', 'pages', 'partials', "_#{@list.name.parameterize}.html.erb").to_s)
+      # end
       redirect_to lists_url, notice: 'List was successfully destroyed.'
     end
 
@@ -64,7 +64,7 @@ module WebiniusCms
 
       # Only allow a trusted parameter "white list" through.
       def list_params
-        params.require(:list).permit(:name)
+        params.require(:list).permit(:name, :webinius_cms_page_id)
       end
   end
 end

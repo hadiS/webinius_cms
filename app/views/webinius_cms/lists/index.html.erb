@@ -6,6 +6,7 @@
   <thead>
     <tr class='info'>
       <th class='title'>Name</th>
+      <th class='status'>For page</th>
       <th class='actions'>Action</th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @lists.each do |list| %>
       <tr>
         <td><%= list.name %></td>
+        <td><%= list.page.send("#{I18n.locale}_title") if list.page.present? %></td>
         <td>
           <%= link_to content_tag(:i, '', :class => 'glyphicon glyphicon-list-alt')+' List Items', list_list_items_path(list), :class => 'btn btn-xs btn-info' %>
           <%= link_to content_tag(:i, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_list_path(list), :class => 'btn btn-xs btn-info' %>
