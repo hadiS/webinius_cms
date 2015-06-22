@@ -4,6 +4,7 @@ module WebiniusCms
   class ListItemsController < ApplicationController
     layout 'webinius_cms/admin'
 
+    before_action :authorize
     before_action :set_list, only: [:index, :create, :new, :edit, :update, :destroy]
     before_action :set_list_item, only: [:show, :edit, :update, :destroy]
 
