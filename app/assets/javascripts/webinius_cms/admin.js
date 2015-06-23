@@ -2,5 +2,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require tinymce/index
+//= require tinymce-jquery
 //= require webinius_cms/pages
