@@ -1,8 +1,8 @@
 WebiniusCms::Engine.routes.draw do
 
-  resources :users
+  # resources :users
 
-  resources :pages
+  # resources :pages
 
   resources :documents, only: :show
 
