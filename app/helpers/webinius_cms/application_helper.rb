@@ -20,8 +20,8 @@ module WebiniusCms
 
 		def nested_page_path(page, args = {})
 			url_params = args.present? ? "?#{args.to_query}" : ''
-			"/#{I18n.locale}/" + (page.ancestors + [page]).map(&:to_param).join("/") + url_params
+			"/#{I18n.locale}/" + page.send(:"#{I18n.locale}_slug") + url_params
 		end
-	
+
 	end
 end

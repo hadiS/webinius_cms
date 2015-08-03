@@ -34,10 +34,9 @@ module WebiniusCms
 			end
 		end
 
-		def to_param
-			# slug
-      send(:"#{I18n.locale}_slug")
-		end
+		# def to_param
+  #     send(:"#{I18n.locale}_slug")
+		# end
 
     def validate_title
       Language.online.each do |lang|
@@ -48,9 +47,8 @@ module WebiniusCms
     end
 
 		def generate_slug
-			# self.slug = en_title.parameterize
       Language.all.each do |lang|
-        self.properties = (properties || {}).merge("#{lang.code}_slug" => send(:"#{lang.code}_title").parameterize)
+        self.properties = (properties || {}).merge("#{lang.code}_slug" => (self.ancestors + [self]).map{ |page| page.send(:"#{lang.code}_title").parameterize }.compact.join("/"))
       end
 		end
 

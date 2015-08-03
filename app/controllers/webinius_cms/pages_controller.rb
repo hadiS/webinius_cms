@@ -5,7 +5,8 @@ module WebiniusCms
     layout 'webinius_cms/admin'
 
     before_action :authorize, except: :show
-    before_action :set_page, only: [:show, :edit, :update, :destroy, :higher, :lower]
+    before_action :set_page, only: [:show]
+    before_action :set_page_with_id, only: [:update, :edit, :destroy, :higher, :lower]
     before_action :lookup_partials, only: [:new, :edit, :create, :update]
 
     # GET /pages
@@ -94,10 +95,14 @@ module WebiniusCms
       def set_page
         if params[:id]# && params[:id] != 'en' && params[:id] != 'de'
           # @page = Page.find_by!(slug: params[:id].split('/').last)
-          @page = Page.where("properties @> hstore(?, ?)", "#{I18n.locale}_slug", params[:id].split('/').last).first
+          @page = Page.where("properties @> hstore(?, ?)", "#{I18n.locale}_slug", params[:id]).first
         else
           @page = Page.roots.online.first
         end
+      end
+
+      def set_page_with_id
+        @page = Page.find(params[:id])
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.

@@ -4,9 +4,9 @@
 	<td><%= page.navigation_type %></td>
 	<td>
 		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus')+' Add', new_page_path(parent_id: page.id), :class => 'btn btn-xs btn-success' %>
-		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_page_path(page), :class => 'btn btn-xs btn-info' %>
-		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-up'), higher_page_path(page), :class => 'btn btn-xs' %>
-		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-down'), lower_page_path(page), :class => 'btn btn-xs' %>
-		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', page, :class => 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_page_path(page.id), :class => 'btn btn-xs btn-info' %>
+		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-up'), higher_page_path(page.id), :class => 'btn btn-xs' %>
+		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-down'), lower_page_path(page.id), :class => 'btn btn-xs' %>
+		<%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', page_path(page.id), :class => 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
 	</td>
 </tr>
