@@ -1,0 +1,29 @@
+<div class="form-group">
+  <%= f.label :image, "Image" %>
+  <div>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+</div>
+<div class="checkbox">
+  <label>
+    <%= f.check_box :_destroy %> Remove Image
+  </label>
+</div>
+<%= image_tag f.object.image.thumb.url if f.object.image.present? %>
+
+<div class="form-group">
+  <%= f.label :title, "Title" %>
+  <div>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :description, "Description" %>
+  <div>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+</div>
+
+<hr class='separator'>
