@@ -1,5 +1,6 @@
 WebiniusCms::Engine.routes.draw do
 
+  resources :images
   # resources :users
 
   # resources :pages

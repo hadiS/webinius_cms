@@ -51,3 +51,16 @@ label {
 .horizontal-space {
   margin-left: 40px;
 }
+
+hr.separator {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #8F8F8F -moz-use-text-color -moz-use-text-color;
+  border-image: none;
+  border-style: solid none none;
+  border-width: 5px 0 0;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}

@@ -78,6 +78,7 @@
 
   <div class="well">
     <div class="form-group">
+      <h4>Background image</h4>
       <%= f.label :picture, 'Image' %>
       <div>
         <%= f.file_field :picture %>
@@ -95,43 +96,53 @@
   </div>
 
   <div class="well">
-    <span><strong>Downloads</strong></span>
+    <div class="form-group">
+      <h4>Gallery</h4>
 
-      <%= f.fields_for :documents do |document| %>
-
-          <% if document.object.new_record? %>
-
-            <br>
-            <div><strong>Add new file</strong></div>
-            <div class="form-group">
-              <div>
-                <%= document.file_field :document %>
-                <%= document.hidden_field :document_cache %>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <%= document.label :name, 'Name' %>
-              <div>
-                <%= document.text_field :name, class: 'form-control' %>
-                <%= errors_for document.object, :name %>
-              </div>
-            </div>
-
-          <% else %>
-
-            <div class="checkbox">
-              <%= link_to document_path(document.object) do %>
-                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= document.object.name %>
-              <% end %>
-              <label class='horizontal-space'>
-                <%= document.check_box :_destroy %> Remove Document
-              </label>
-            </div>
-
-          <% end %>
-
+      <%= f.fields_for :images do |builder| %>
+        <%= render 'image_fields', f: builder %>
       <% end %>
+    </div>
+  </div>
+
+  <div class="well">
+    <h4>Downloads</h4>
+
+    <%= f.fields_for :documents do |document| %>
+
+        <% if document.object.new_record? %>
+
+          <br>
+          <div><strong>Add new file</strong></div>
+          <div class="form-group">
+            <div>
+              <%= document.file_field :document %>
+              <%= document.hidden_field :document_cache %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= document.label :name, 'Name' %>
+            <div>
+              <%= document.text_field :name, class: 'form-control' %>
+              <%= errors_for document.object, :name %>
+            </div>
+          </div>
+
+        <% else %>
+
+          <div class="checkbox">
+            <%= link_to document_path(document.object) do %>
+              <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= document.object.name %>
+            <% end %>
+            <label class='horizontal-space'>
+              <%= document.check_box :_destroy %> Remove Document
+            </label>
+          </div>
+
+        <% end %>
+
+    <% end %>
   </div>
 
   <div class="well">
