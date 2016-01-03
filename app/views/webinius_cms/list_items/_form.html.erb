@@ -57,6 +57,16 @@
 
   <div class="well">
     <div class="form-group">
+      <%= f.label :is_news, "Use in News-Box" %>
+      <div>
+        <%= f.check_box :is_news %>
+        <%= errors_for @list_item, :is_news %>
+      </div>
+    </div>
+  </div>
+
+  <div class="well">
+    <div class="form-group">
       <%= f.label :picture, 'Image' %>
       <div>
         <%= f.file_field :picture %>

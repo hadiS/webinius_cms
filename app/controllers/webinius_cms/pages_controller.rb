@@ -118,7 +118,7 @@ module WebiniusCms
           lang_field
         end.flatten!
         params.require(:page).permit(:parent_id, :status, :map_address, :kind, :picture, :navigation_type,
-          :remove_picture, :picture, :picture_cache, :docs, *dynamic_fields, documents_attributes: [:id, :name, :document, :document_cache, :_destroy], images_attributes: [:id, :title, :image, :image_cache, :_destroy, :description])
+          :remove_picture, :picture, :picture_cache, :docs, :is_news, *dynamic_fields, documents_attributes: [:id, :name, :document, :document_cache, :_destroy], images_attributes: [:id, :title, :image, :image_cache, :_destroy, :description])
       end
   end
 end

@@ -75,7 +75,7 @@ module WebiniusCms
           end
           lang_field
         end.flatten!
-        params.require(:list_item).permit(:status, :remove_picture, :picture, :picture_cache, *dynamic_fields, documents_attributes: [:id, :name, :document, :document_cache, :_destroy])
+        params.require(:list_item).permit(:status, :remove_picture, :picture, :picture_cache, :is_news, *dynamic_fields, documents_attributes: [:id, :name, :document, :document_cache, :_destroy])
       end
   end
 end
