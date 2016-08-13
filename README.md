@@ -1,9 +1,7 @@
-# Webinius CMS
-
-Version 0.3.0
-
 # WebiniusCMS
 WebiniusCMS is a Rails CMS Engine for developers running on PostgreSQL.
+
+Version 0.3.0
 
 ## Installation
 
