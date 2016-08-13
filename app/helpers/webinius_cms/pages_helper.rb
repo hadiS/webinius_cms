@@ -1,5 +1,5 @@
 module WebiniusCms
-	module PagesHelper
+  module PagesHelper
 
-	end
+  end
 end

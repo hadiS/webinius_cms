@@ -1,5 +1,5 @@
 module WebiniusCms
-  class Document < ActiveRecord::Base
+  class Document < ApplicationRecord
     belongs_to :docable, polymorphic: true
 
     mount_uploader :document, DocUploader

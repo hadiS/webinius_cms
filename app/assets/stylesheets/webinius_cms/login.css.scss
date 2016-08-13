@@ -8,27 +8,27 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require font-awesome
  *= require_self
  */
 
 $container-large-desktop: 960px;
 
+@import "font-awesome";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 html, body {
-	height: 100%;
+  height: 100%;
 }
 
 body {
-	background-color: #333;
-	font-family: 'Open Sans Light', "Helvetica", Helvetica, Arial, sans-serif;
-	position: relative;
-	font-size: 16px;
-	color: #fff;
+  background-color: #333;
+  font-family: 'Open Sans Light', "Helvetica", Helvetica, Arial, sans-serif;
+  position: relative;
+  font-size: 16px;
+  color: #fff;
 }
 
 .container {
-	margin-top: 10%;
+  margin-top: 10%;
 }

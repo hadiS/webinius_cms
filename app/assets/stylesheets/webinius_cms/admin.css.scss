@@ -7,6 +7,7 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
+ *= require webinius_cms/trix
  *= require_self
  */
 
@@ -14,33 +15,33 @@
 @import "bootstrap";
 
 body {
-	padding-top: 60px;
+  padding-top: 60px;
 }
 
 thead tr {
-	background-color: #D9EDF7;
+  background-color: #D9EDF7;
 }
 
 .pages {
-	.title {
-		width: 100%;
-	}
+  .title {
+    width: 100%;
+  }
 
-	.status {
-		min-width: 130px;
-	}
+  .status {
+    min-width: 130px;
+  }
 
-	.actions {
-		min-width: 280px;
-	}
+  .actions {
+    min-width: 280px;
+  }
 }
 
 .form-group {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 label {
-	margin-bottom: 2px;
+  margin-bottom: 2px;
 }
 
 .field_with_errors, #error_explanation {
@@ -63,4 +64,9 @@ hr.separator {
   border-width: 5px 0 0;
   margin-bottom: 20px;
   margin-top: 20px;
+}
+
+.trix-content {
+  min-height: 300px;
+  background-color: #fff;
 }

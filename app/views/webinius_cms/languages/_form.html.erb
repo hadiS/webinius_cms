@@ -1,40 +1,40 @@
 <%= form_for @language do |f| %>
 
-	<div class="form-group">
-		<%= f.label :code, 'Language Code' %>
-		<div class="">
-			<%= f.text_field :code, class: 'form-control' %>
-			<%= errors_for @language, :code %>
-		</div>
-	</div>
+  <div class="form-group">
+    <%= f.label :code, 'Language Code' %>
+    <div class="">
+      <%= f.text_field :code, class: 'form-control' %>
+      <%= errors_for @language, :code %>
+    </div>
+  </div>
 
-	<div class="form-group">
-		<%= f.label :name, 'Name' %>
-		<div class="">
-			<%= f.text_field :name, class: 'form-control' %>
-			<%= errors_for @language, :name %>
-		</div>
-	</div>
+  <div class="form-group">
+    <%= f.label :name, 'Name' %>
+    <div class="">
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= errors_for @language, :name %>
+    </div>
+  </div>
 
-	<div class="form-group">
-		<%= f.label :status, 'Online' %>
-		<div class="">
-			<label><%= f.check_box :status, class: '' %></label>
-			<%= errors_for @language, :status %>
-		</div>
-	</div>
+  <div class="form-group">
+    <%= f.label :status, 'Online' %>
+    <div class="">
+      <label><%= f.check_box :status, class: '' %></label>
+      <%= errors_for @language, :status %>
+    </div>
+  </div>
 
-	<div class="form-group">
-		<%= f.label :default, 'Default' %>
-		<div class="">
-			<label><%= f.check_box :default, class: '' %></label>
-			<%= errors_for @language, :default %>
-		</div>
-	</div>
+  <div class="form-group">
+    <%= f.label :default, 'Default' %>
+    <div class="">
+      <label><%= f.check_box :default, class: '' %></label>
+      <%= errors_for @language, :default %>
+    </div>
+  </div>
 
-	<div class="form-actions">
-		<%= f.button 'Save', class: 'btn btn-info' %>
-		<%= link_to 'Cancel', languages_path, class: 'btn btn-small' %>
-	</div>
+  <div class="form-actions">
+    <%= f.button 'Save', class: 'btn btn-info' %>
+    <%= link_to 'Cancel', languages_path, class: 'btn btn-small' %>
+  </div>
 
 <% end %>

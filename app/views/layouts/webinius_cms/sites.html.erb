@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Webinius CMS</title>
-	<%= stylesheet_link_tag    "webinius_cms/sites", media: "all", "data-turbolinks-track" => true %>
-	<%= javascript_include_tag "webinius_cms/sites", "data-turbolinks-track" => true %>
+  <title>Webinius CMS</title>
+  <%= stylesheet_link_tag    "webinius_cms/sites", media: "all", 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag "webinius_cms/sites", 'data-turbolinks-track': 'reload' %>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name='description' content='<%= set_lang(@page, "meta_description") if @page %>' />
-	<%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name='description' content='<%= set_lang(@page, "meta_description") if @page %>' />
+  <%= csrf_meta_tags %>
 </head>
 <body>
 
-	<div class="site-wrapper">
+  <div class="site-wrapper">
 
 
-		<div class="container">
+    <div class="container">
 
-			<div class="row">
-				<div class="col-xs-12">
-					<nav class='navbar navbar-default' role="navigation">
+      <div class="row">
+        <div class="col-xs-12">
+          <nav class='navbar navbar-default' role="navigation">
 
-						<div class="navbar-header">
-				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				        <span class="sr-only">Toggle navigation</span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				      </button>
-				      <%= link_to 'Webinius CMS', root_path(locale: I18n.locale), class: 'name navbar-brand' %>
-				    </div>
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <%= link_to 'Webinius CMS', root_path(locale: I18n.locale), class: 'name navbar-brand' %>
+            </div>
 
-				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				    	<ul class="nav navbar-nav navbar-right nav-main" >
-				    		<% WebiniusCms::Page.roots.navigation_main.online.order(:position).each do |page| %>
-				    			<li>
-				    				<%= link_to set_lang(page, "title"), nested_page_path(page), class: ('active arrow_box' if @page == page || @page.parent == page) %>
-				    				<% if @page.has_children? && page == @page %>
-				    					<ul class="nav">
-				    						<% @page.children.online.navigation_main.order(:position).each do |page| %>
-				    							<li><%= link_to set_lang(page, "title"), nested_page_path(page), class: ('active' if @page == page) %></li>
-				    						<% end %>
-				    					</ul>
-				    				<% end %>
-				    			</li>
-				    		<% end %>
-				    	</ul>
-				    </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right nav-main" >
+                <% WebiniusCms::Page.roots.navigation_main.online.order(:position).each do |page| %>
+                  <li>
+                    <%= link_to set_lang(page, "title"), nested_page_path(page), class: ('active arrow_box' if @page == page || @page.parent == page) %>
+                    <% if @page.has_children? && page == @page %>
+                      <ul class="nav">
+                        <% @page.children.online.navigation_main.order(:position).each do |page| %>
+                          <li><%= link_to set_lang(page, "title"), nested_page_path(page), class: ('active' if @page == page) %></li>
+                        <% end %>
+                      </ul>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
 
-					</nav>
-				</div>
+          </nav>
+        </div>
 
-			</div>
+      </div>
 
-			<div class='row content'>
+      <div class='row content'>
 
         <% if flash[:notice] %>
           <div class="alert alert-success">
@@ -60,33 +60,33 @@
           </div>
         <% end %>
 
-				<div class="col-xs-12">
-					<%= render partial: "webinius_cms/pages/partials/#{@page.kind}" if @page %>
-				</div>
+        <div class="col-xs-12">
+          <%= render partial: "webinius_cms/pages/partials/#{@page.kind}" if @page %>
+        </div>
 
-			</div>
+      </div>
 
-			<nav class='navbar-fixed-bottom'>
-				<div class="container">
+      <nav class='navbar-fixed-bottom'>
+        <div class="container">
 
-					<ul class="nav nav-footer">
-						<% if WebiniusCms::Language.where(status: true).size > 1 %>
-							<% WebiniusCms::Language.where(status: true).each do |l| %>
-								<li><%= link_to l.code, request.parameters.merge({locale: l.code}) %></li>
-							<% end %>
-						<% end %>
+          <ul class="nav nav-footer">
+            <% if WebiniusCms::Language.where(status: true).size > 1 %>
+              <% WebiniusCms::Language.where(status: true).each do |l| %>
+                <li><%= link_to l.code, request.parameters.merge({locale: l.code}) %></li>
+              <% end %>
+            <% end %>
 
-						<% WebiniusCms::Page.roots.navigation_footer.online.order(:position).each do |page| %>
-							<li><%= link_to set_lang(page, "title"), nested_page_path(page) %></li>
-						<% end %>
-					</ul>
+            <% WebiniusCms::Page.roots.navigation_footer.online.order(:position).each do |page| %>
+              <li><%= link_to set_lang(page, "title"), nested_page_path(page) %></li>
+            <% end %>
+          </ul>
 
-				</div>
-			</nav>
+        </div>
+      </nav>
 
-		</div>
+    </div>
 
-	</div>
+  </div>
 
 </body>
 </html>

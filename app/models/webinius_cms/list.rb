@@ -1,5 +1,5 @@
 module WebiniusCms
-  class List < ActiveRecord::Base
+  class List < ApplicationRecord
 
     has_many :list_items, class_name: 'WebiniusCms::ListItem', foreign_key: :webinius_cms_list_id
 

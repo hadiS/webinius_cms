@@ -1,5 +1,5 @@
 module WebiniusCms
-  class Language < ActiveRecord::Base
+  class Language < ApplicationRecord
 
     scope :online, -> { where(status: true) }
 
