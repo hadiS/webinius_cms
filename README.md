@@ -3,9 +3,9 @@ WebiniusCMS is a Rails CMS Engine for developers running on PostgreSQL.
 
 Version 0.3.0
 
-## Installation
+## Install into an existing Rails 5+ project:
 
-You need Rails 5+ to run WebiniusCMS. Create a new Rails App. Create a PostgreSQL Database.
+You need Rails 5+ to run WebiniusCMS.
 
 Then add this line to your application's Gemfile:
 
