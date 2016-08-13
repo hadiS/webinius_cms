@@ -36,7 +36,9 @@
           <div class="form-group">
             <%= f.label :"#{lang.code}_content", "Text" %>
             <div>
-              <%= f.text_area :"#{lang.code}_content", rows: 15, class: 'text form-control' %>
+              <%= f.hidden_field :"#{lang.code}_content", class: 'text form-control', value: f.object.send(:"#{lang.code}_content") %>
+              <trix-editor input="list_item_<%= lang.code %>_content" class='trix-content'></trix-editor>
+
               <%= errors_for @list_item, :"#{lang.code}_content" %>
             </div>
           </div>
