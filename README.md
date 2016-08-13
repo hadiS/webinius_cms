@@ -39,6 +39,7 @@ and run your migrations and seed task as usual:
 
 ```bash
 $ bin/rails db:migrate
+$ bin/rails db:seed
 ```
 
 The admin section is available at localhost:3000/login
