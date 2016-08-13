@@ -35,9 +35,8 @@ Add this to your seeds.rb file:
 WebiniusCms::Engine.load_seed
 ```
 
-and run your seed task.
+and run your migrations and seed task as usual:
 
-Then run your migrations as usual:
 ```bash
 $ bin/rails db:migrate
 ```
