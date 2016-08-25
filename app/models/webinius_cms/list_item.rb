@@ -37,7 +37,6 @@ module WebiniusCms
     end
 
     def generate_slug
-      # self.slug = en_title.parameterize
       Language.all.each do |lang|
         self.properties = (properties || {}).merge("#{lang.code}_slug" => [id, send(:"#{lang.code}_title").parameterize].join('-'))
       end

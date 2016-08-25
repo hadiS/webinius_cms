@@ -37,10 +37,6 @@ module WebiniusCms
       end
     end
 
-    # def to_param
-  #     send(:"#{I18n.locale}_slug")
-    # end
-
     def validate_title
       Language.online.each do |lang|
         if send(:"#{lang.code}_title").blank?

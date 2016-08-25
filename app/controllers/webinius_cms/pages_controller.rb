@@ -95,8 +95,7 @@ module WebiniusCms
 
       # Use callbacks to share common setup or constraints between actions.
       def set_page
-        if params[:id]# && params[:id] != 'en' && params[:id] != 'de'
-          # @page = Page.find_by!(slug: params[:id].split('/').last)
+        if params[:id]
           @page = Page.where("properties @> hstore(?, ?)", "#{I18n.locale}_slug", params[:id]).first
           if @page.blank?
             slug_parts = params[:id].split('/')
