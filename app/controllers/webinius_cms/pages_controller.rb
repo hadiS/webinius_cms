@@ -98,6 +98,14 @@ module WebiniusCms
         if params[:id]# && params[:id] != 'en' && params[:id] != 'de'
           # @page = Page.find_by!(slug: params[:id].split('/').last)
           @page = Page.where("properties @> hstore(?, ?)", "#{I18n.locale}_slug", params[:id]).first
+          if @page.blank?
+            slug_parts = params[:id].split('/')
+            item_list_id = slug_parts.slice(-1)
+            page_id = slug_parts.slice(0, slug_parts.size-1)
+
+            @page = Page.where("properties @> hstore(?, ?)", "#{I18n.locale}_slug", page_id.join('/')).first
+            @list_item = ListItem.where("properties @> hstore(?, ?)", "#{I18n.locale}_slug", item_list_id).first
+          end
         else
           @page = Page.roots.online.first
         end

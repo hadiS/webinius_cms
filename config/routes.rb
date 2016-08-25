@@ -7,36 +7,37 @@ WebiniusCms::Engine.routes.draw do
 
   resources :documents, only: :show
 
-	scope '/admin' do
+  scope '/admin' do
 
-		resources :users
+    resources :users
 
-		resources :languages
+    resources :languages
 
-		resources :pages, only: [:index, :new, :create, :update, :edit, :destroy] do
-			member do
-				get 'higher'
-				get 'lower'
-			end
-		end
+    resources :pages, only: [:index, :new, :create, :update, :edit, :destroy] do
+      member do
+        get 'higher'
+        get 'lower'
+      end
+    end
 
     resources :lists do
       resources :list_items
     end
-	end
+  end
 
-	resources :sessions
+  resources :sessions
 
-	get 'login', to: 'sessions#new', as: 'login'
-	get 'logout', to: 'sessions#destroy', as: 'logout'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
 
-	scope "(:locale)" do
+  scope "(:locale)" do
 
-		# resources :pages, path: "", except: [:index, :new, :create, :update, :edit, :destroy]
+    # resources :pages, path: "", except: [:index, :new, :create, :update, :edit, :destroy]
+    # get "*id/:list_item_id", to: 'list_items#show'
 
-		get "*id", to: 'pages#show'
-	end
+    get "*id", to: 'pages#show'
+  end
 
-	root 'pages#show'
+  root 'pages#show'
 
 end

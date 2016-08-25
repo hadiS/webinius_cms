@@ -1,7 +1,7 @@
 # WebiniusCMS
 WebiniusCMS is a Rails CMS Engine for developers running on PostgreSQL.
 
-Version 0.3.0
+Version 0.4.0
 
 ## Install into an existing Rails 5+ project:
 
@@ -26,7 +26,7 @@ mount WebiniusCms::Engine, at: '/', as: 'webinius_cms'
 
 To copy the migrations of the Engine inside your Rails App execute:
 ```bash
-$ bin/rails app:webinius_cms:install:migrations
+$ bin/rails webinius_cms:install:migrations
 ```
 
 Add this to your seeds.rb file:

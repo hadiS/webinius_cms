@@ -18,9 +18,11 @@ module WebiniusCms
       text.present? ? text : receiver.send("de_#{method_name}")
     end
 
-    def nested_page_path(page, args = {})
+    def nested_page_path(page, slug = nil, args = {})
       url_params = args.present? ? "?#{args.to_query}" : ''
-      "/#{I18n.locale}/" + page.send(:"#{I18n.locale}_slug") + url_params
+      path = "/#{I18n.locale}/" + page.send(:"#{I18n.locale}_slug")
+      path << "/#{slug}" if slug
+      path << url_params
     end
 
   end
