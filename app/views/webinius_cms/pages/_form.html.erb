@@ -65,7 +65,7 @@
           </div>
 
           <div class="form-group">
-            <%= f.label :"#{lang.code}_meta_description", "Meta description" %>
+            <%= f.label :"#{lang.code}_meta_description", "Search Engine description" %>
             <div>
               <%= f.text_field :"#{lang.code}_meta_description", class: 'form-control' %>
               <%= errors_for @page, :"#{lang.code}_meta_description" %>
@@ -160,7 +160,7 @@
   <div class="well">
 
     <div class="form-group">
-      <%= f.label :kind, 'Content file' %>
+      <%= f.label :kind, 'Design Template' %>
       <div>
         <%= f.select :kind, @partials.collect { |p| [p, p] } , include_blank: false, class: 'form-control' %>
         <%= errors_for @page, :kind %>
