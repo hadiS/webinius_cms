@@ -86,6 +86,16 @@
   </div>
 
   <div class="well">
+    <div class="form-group">
+      <h4>Gallery</h4>
+
+      <%= f.fields_for :images do |builder| %>
+        <%= render 'webinius_cms/pages/image_fields', f: builder %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="well">
     <span><strong>Downloads</strong></span>
 
       <%= f.fields_for :documents do |document| %>

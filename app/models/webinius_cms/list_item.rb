@@ -6,6 +6,9 @@ module WebiniusCms
     has_many :documents, as: :docable, dependent: :destroy
     accepts_nested_attributes_for :documents, allow_destroy: true, reject_if: proc { |attributes| attributes['document'].blank? && attributes['document_cache'].blank? }
 
+    has_many :images, as: :imageable, dependent: :destroy
+    accepts_nested_attributes_for :images, allow_destroy: true, reject_if: proc { |attributes| attributes['image'].blank? && attributes['image_cache'].blank? && attributes['id'].blank? }
+
     validate :validate_title
 
     before_validation :generate_slug
