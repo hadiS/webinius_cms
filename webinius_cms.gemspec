@@ -32,7 +32,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'will_paginate-bootstrap'
   s.add_dependency 'carrierwave'
   s.add_dependency 'mini_magick'
-  s.add_dependency 'tinymce-rails'
 
   s.add_development_dependency 'byebug'
   s.add_development_dependency 'web-console'

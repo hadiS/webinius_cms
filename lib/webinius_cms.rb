@@ -7,7 +7,6 @@ require 'turbolinks'
 require 'font-awesome-sass'
 require 'carrierwave'
 require 'mini_magick'
-require 'tinymce-rails'
 require 'will_paginate'
 require 'will_paginate-bootstrap'
 
