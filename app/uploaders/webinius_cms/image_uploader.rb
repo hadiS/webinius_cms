@@ -47,6 +47,11 @@ module WebiniusCms
       process :quality => 50
     end
 
+    version :thumbnail do
+      process :resize_to_fill => [WebiniusCms.image_size_thumb, WebiniusCms.image_size_thumb]
+      process :quality => 50
+    end
+
     # Add a white list of extensions which are allowed to be uploaded.
     # For images you might use something like this:
     # def extension_white_list
