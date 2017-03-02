@@ -5,7 +5,7 @@ module WebiniusCms
 
     def show
       @document = Document.find(params[:id])
-      send_file @document.document.path
+      send_file @document.document.path, disposition: 'inline'
     end
 
   end
