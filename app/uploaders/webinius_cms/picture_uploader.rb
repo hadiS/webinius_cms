@@ -43,7 +43,7 @@ module WebiniusCms
     end
 
     version :square do
-      process :resize_to_fill => [WebiniusCms.image_size_thumb, WebiniusCms.image_size_thumb]
+      process :resize_to_fit => [WebiniusCms.image_size_thumb, WebiniusCms.image_size_thumb]
       process :quality => 50
     end
 
