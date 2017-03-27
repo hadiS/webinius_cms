@@ -19,6 +19,8 @@
         <td>
           <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_list_list_item_path(@list, list_item), :class => 'btn btn-xs btn-info' %>
           <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', list_list_item_path(@list, list_item), :class => 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-up'), higher_list_list_item_path(@list, list_item), :class => 'btn btn-xs' %>
+          <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-down'), lower_list_list_item_path(@list, list_item), :class => 'btn btn-xs' %>
         </td>
       </tr>
     <% end %>

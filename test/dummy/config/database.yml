@@ -13,7 +13,7 @@ development:
   encoding: utf8
   database: webinius_development
   host: localhost
-  username: hadi
+  username: hadis78
   password:
 
 
@@ -25,7 +25,7 @@ test:
   encoding: utf8
   database: webinius_test
   pool: 5
-  username: hadi
+  username: hadis78
   password:
 
 production:

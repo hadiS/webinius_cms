@@ -6,11 +6,11 @@ module WebiniusCms
 
     before_action :authorize
     before_action :set_list, only: [:index, :create, :new, :edit, :update, :destroy]
-    before_action :set_list_item, only: [:show, :edit, :update, :destroy]
+    before_action :set_list_item, only: [:show, :edit, :update, :destroy, :higher, :lower]
 
     # GET /list_items
     def index
-      @list_items = @list.list_items
+      @list_items = @list.list_items.order(:position)
     end
 
     # GET /list_items/1
@@ -55,6 +55,16 @@ module WebiniusCms
     def destroy
       @list_item.destroy
       redirect_to list_list_items_url, notice: 'List item was successfully destroyed.'
+    end
+
+    def higher
+      @list_item.move_higher
+      redirect_to list_list_items_path
+    end
+
+    def lower
+      @list_item.move_lower
+      redirect_to list_list_items_path
     end
 
     private

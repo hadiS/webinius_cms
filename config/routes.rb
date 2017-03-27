@@ -21,7 +21,12 @@ WebiniusCms::Engine.routes.draw do
     end
 
     resources :lists do
-      resources :list_items
+      resources :list_items do
+        member do
+          get 'higher'
+          get 'lower'
+        end
+      end
     end
   end
 

@@ -9,7 +9,7 @@ module WebiniusCms
 
     # GET /lists
     def index
-      @lists = List.all
+      @lists = List.all.order(created_at: :asc)
     end
 
     # GET /lists/1

@@ -1,6 +1,8 @@
 module WebiniusCms
   class ListItem < ApplicationRecord
 
+    acts_as_list scope: :webinius_cms_list_id
+
     belongs_to :list, class_name: 'WebiniusCms::List', foreign_key: :webinius_cms_list_id
 
     has_many :documents, as: :docable, dependent: :destroy
