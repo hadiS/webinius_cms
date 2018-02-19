@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    "webinius_cms/sites", media: "all", 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag "webinius_cms/sites", 'data-turbolinks-track': 'reload' %>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name='description' content='<%= set_lang(@page, "meta_description") if @page %>' />
   <%= csrf_meta_tags %>
 </head>
@@ -13,11 +13,35 @@
 
   <div class="site-wrapper">
 
+    <div class="container-fuild">
 
-    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+
+            <% WebiniusCms::Page.roots.navigation_main.online.order(:position).each do |page| %>
+              <li class='nav-item'>
+                <%= link_to set_lang(page, "title"), nested_page_path(page), class: 'nav-link' %>
+                <%# if @page.has_children? && page == @page %>
+                  <!-- <ul class="nav">
+                    <%# @page.children.online.navigation_main.order(:position).each do |page| %>
+                      <li><%#= link_to set_lang(page, "title"), nested_page_path(page), class: ('active' if @page == page) %></li>
+                    <%# end %>
+                  </ul> -->
+                <%# end %>
+              </li>
+            <% end %>
+
+          </ul>
+        </div>
+      </nav>
 
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col">
           <nav class='navbar navbar-default' role="navigation">
 
             <div class="navbar-header">
@@ -60,7 +84,7 @@
           </div>
         <% end %>
 
-        <div class="col-xs-12">
+        <div class="col">
           <%= render partial: "webinius_cms/pages/partials/#{@page.kind}" if @page %>
         </div>
 
@@ -72,7 +96,7 @@
           <ul class="nav nav-footer">
             <% if WebiniusCms::Language.where(status: true).size > 1 %>
               <% WebiniusCms::Language.where(status: true).each do |l| %>
-                <li><%= link_to l.code, request.parameters.merge({locale: l.code}) %></li>
+                <li><%= link_to l.code, request.parameters.merge({locale: l.code, id: @page.send("#{l.code}_slug")}) %></li>
               <% end %>
             <% end %>
 

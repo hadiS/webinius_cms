@@ -11,9 +11,9 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: webinius_development
+  database: <%= ENV["DB_NAME"] %>
   host: localhost
-  username: hadis78
+  username: <%= ENV["DB_USERNAME"] %>
   password:
 
 
@@ -23,15 +23,15 @@ development:
 test:
   adapter: postgresql
   encoding: utf8
-  database: webinius_test
+  database: <%= ENV["DB_NAME"] %>
   pool: 5
-  username: hadis78
+  username: <%= ENV["DB_USERNAME"] %>
   password:
 
 production:
   adapter: postgresql
   encoding: utf8
-  database: webinius_production
+  database: <%= ENV["DB_NAME"] %>
   pool: 5
-  username: hadi
-  password: hadi
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
