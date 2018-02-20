@@ -5,41 +5,28 @@
   <%= stylesheet_link_tag    "webinius_cms/admin", media: "all", 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag "webinius_cms/admin", 'data-turbolinks-track': 'reload' %>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Webinius CMS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <%= link_to 'Pages', webinius_cms.pages_path, class: "nav-item nav-link #{controller_name == 'pages' ? 'active' : ''}" %>
+        <%= link_to 'Lists', webinius_cms.lists_path, class: "nav-item nav-link #{controller_name == 'lists' ? 'active' : ''}" %>
+        <%= link_to 'Languages', webinius_cms.languages_path, class: "nav-item nav-link #{controller_name == 'languages' ? 'active' : ''}" %>
+        <%= link_to 'Users', webinius_cms.users_path, class: "nav-item nav-link #{controller_name == 'users' ? 'active' : ''}" %>
 
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+        <%= render partial: 'layouts/webinius_cms/admin_top_navigation' %>
 
-    <div class="container">
-
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+        <%= link_to 'Logout', webinius_cms.logout_path, class: "nav-item nav-link" %>
       </div>
-
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li class=<%= controller_name == 'pages' ? 'active' : ''%>><%= link_to 'Pages', webinius_cms.pages_path %></li>
-          <li class=<%= controller_name == 'lists' ? 'active' : ''%>><%= link_to 'Lists', webinius_cms.lists_path %></li>
-          <li class=<%= controller_name == 'languages' ? 'active' : ''%>><%= link_to 'Languages', webinius_cms.languages_path %></li>
-          <li class=<%= controller_name == 'users' ? 'active' : ''%>><%= link_to 'Users', webinius_cms.users_path %></li>
-          <%= render partial: 'layouts/webinius_cms/admin_top_navigation' %>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'Logout', webinius_cms.logout_path %></li>
-        </ul>
-      </div>
-
     </div>
-
   </nav>
 
   <div class="container">
@@ -52,7 +39,7 @@
 
     <%= yield %>
 
-  </div> <!-- /container -->
+  </div>
 
 
 </body>

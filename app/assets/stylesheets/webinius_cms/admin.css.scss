@@ -15,7 +15,11 @@
 @import "bootstrap";
 
 body {
-  padding-top: 60px;
+  padding-bottom: 80px;
+}
+
+nav {
+  margin-bottom: 60px;
 }
 
 thead tr {
@@ -69,4 +73,9 @@ hr.separator {
 .trix-content {
   min-height: 300px;
   background-color: #fff;
+}
+
+.icon-sm {
+  width: 12px;
+  height: 12px;
 }

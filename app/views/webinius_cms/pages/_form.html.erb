@@ -1,131 +1,119 @@
 <%= form_for @page do |f| %>
 
-  <!-- <div class="well">
-
-    <%#= f.label :picture, "Bild" %>
-    <%#= f.file_field :picture %>
-    <%#= errors_for @page, :picture %>
-
-    <%# if @page.picture.present? %>
-      <div class="form-group">
-        <%#= f.label :remove_picture, 'Bild entfernen' %>
-        <div>
-          <%#= f.check_box :remove_picture %>
-          <%#= errors_for @page, :remove_picture %>
-        </div>
-      </div>
-      <%#= image_tag(@page.picture_url(:thumbnail)) %>
-    <%# end %>
-
-  </div> -->
-
   <% if @page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this Page from being saved.</h2>
-    </div>
+    <div class='alert alert-danger'><%= pluralize(@page.errors.count, "error") %> prohibited this Page from being saved.</div>
   <% end %>
 
   <%= f.hidden_field :parent_id %>
 
-  <div class="well">
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <% WebiniusCms::Language.all.each do |lang| %>
+          <li class="nav-item"><a href="#<%= lang.name %>" class="nav-link <%= 'active' if lang.code == 'de' %>" data-toggle="tab"><%= lang.name %></a></li>
+        <% end %>
+      </ul>
+    </div>
 
-    <ul class="nav nav-tabs">
-      <% WebiniusCms::Language.all.each do |lang| %>
-        <li class="<%= 'active' if lang.code == 'de' %>"><a href="#<%= lang.name %>" data-toggle="tab"><%= lang.name %></a></li>
-      <% end %>
-    </ul>
-    <div class="tab-content">
-      <% WebiniusCms::Language.all.each do |lang| %>
-        <div class="tab-pane <%= 'active' if lang.code == 'de' %>" id="<%= lang.name %>">
+    <div class="card-body">
+      <div class="tab-content">
+        <% WebiniusCms::Language.all.each do |lang| %>
+          <div class="tab-pane <%= 'active' if lang.code == 'de' %>" id="<%= lang.name %>">
 
-          <div class="form-group">
-            <%= f.label :"#{lang.code}_title", 'Name' %>
-            <div>
-              <%= f.text_field :"#{lang.code}_title", class: 'form-control' %>
-              <%= errors_for @page, :"#{lang.code}_title" %>
+            <div class="form-group">
+              <%= f.label :"#{lang.code}_title", 'Name' %>
+              <div>
+                <%= f.text_field :"#{lang.code}_title", class: 'form-control' %>
+                <%= errors_for @page, :"#{lang.code}_title" %>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <%= f.label :"#{lang.code}_description", 'Description' %>
-            <div>
-              <%= f.text_area :"#{lang.code}_description", rows: 6, class: 'form-control' %>
-              <%= errors_for @page, :"#{lang.code}_description" %>
+            <div class="form-group">
+              <%= f.label :"#{lang.code}_description", 'Description' %>
+              <div>
+                <%= f.text_area :"#{lang.code}_description", rows: 6, class: 'form-control' %>
+                <%= errors_for @page, :"#{lang.code}_description" %>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <%= f.label :"#{lang.code}_content", "Text" %>
-            <div>
-              <%= f.hidden_field :"#{lang.code}_content", class: 'text form-control', value: f.object.send(:"#{lang.code}_content") %>
-              <trix-editor input="page_<%= lang.code %>_content" class='trix-content'></trix-editor>
+            <div class="form-group">
+              <%= f.label :"#{lang.code}_content", "Text" %>
+              <div>
+                <%= f.hidden_field :"#{lang.code}_content", class: 'text form-control', value: f.object.send(:"#{lang.code}_content") %>
+                <trix-editor input="page_<%= lang.code %>_content" class='trix-content'></trix-editor>
 
-              <%= errors_for @page, :"#{lang.code}_content" %>
+                <%= errors_for @page, :"#{lang.code}_content" %>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <%= f.label :"#{lang.code}_meta_description", "Search Engine description" %>
-            <div>
-              <%= f.text_field :"#{lang.code}_meta_description", class: 'form-control' %>
-              <%= errors_for @page, :"#{lang.code}_meta_description" %>
+            <div class="form-group">
+              <%= f.label :"#{lang.code}_meta_description", "Search Engine description" %>
+              <div>
+                <%= f.text_field :"#{lang.code}_meta_description", class: 'form-control' %>
+                <%= errors_for @page, :"#{lang.code}_meta_description" %>
+              </div>
             </div>
-          </div>
 
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="card">
+    <div class="card-header">
+      Page Image
+    </div>
+
+    <div class="card-body">
+      <div class="form-group">
+        
+        <%= f.label :picture, 'Image' %>
+        <div>
+          <%= f.file_field :picture %>
+          <%= f.hidden_field :picture_cache %>
+          <%= errors_for @page, :picture %>
         </div>
-      <% end %>
-    </div>
+      </div>
 
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :remove_picture %> Remove Image
+        </label>
+      </div>
+      <%= image_tag @page.picture.thumb.url if @page.picture? %>
+    </div>
   </div>
 
-  <div class="well">
-    <div class="form-group">
-      <%= f.label :is_news, "Use in News-Box" %>
-      <div>
-        <%= f.check_box :is_news %>
-        <%= errors_for @page, :is_news %>
+  <br>
+
+  <div class="card">
+    <div class="card-header">
+      Gallery
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <%= f.fields_for :images do |builder| %>
+          <%= render 'image_fields', f: builder %>
+        <% end %>
       </div>
     </div>
   </div>
 
-  <div class="well">
-    <div class="form-group">
-      <h4>Background Images</h4>
-      <%= f.label :picture, 'Image' %>
-      <div>
-        <%= f.file_field :picture %>
-        <%= f.hidden_field :picture_cache %>
-        <%= errors_for @page, :picture %>
-      </div>
+  <br>
+
+  <div class="card">
+    <div class="card-header">
+      File Downloads
     </div>
 
-    <div class="checkbox">
-      <label>
-        <%= f.check_box :remove_picture %> Remove Image
-      </label>
-    </div>
-    <%= image_tag @page.picture.thumb.url if @page.picture? %>
-  </div>
-
-  <div class="well">
-    <div class="form-group">
-      <h4>Gallery</h4>
-
-      <%= f.fields_for :images do |builder| %>
-        <%= render 'image_fields', f: builder %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="well">
-    <h4>Downloads</h4>
-
-    <%= f.fields_for :documents do |document| %>
-
+    <div class="card-body">
+      <%= f.fields_for :documents do |document| %>
         <% if document.object.new_record? %>
 
-          <br>
-          <div><strong>Add new file</strong></div>
+          <div>Add new file</div>
           <div class="form-group">
             <div>
               <%= document.file_field :document %>
@@ -151,39 +139,61 @@
               <%= document.check_box :_destroy %> Remove Document
             </label>
           </div>
-
+          
         <% end %>
-
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="well">
+  <br>
 
-    <div class="form-group">
-      <%= f.label :kind, 'Design Template' %>
-      <div>
-        <%= f.select :kind, @partials.collect { |p| [p, p] } , include_blank: false, class: 'form-control' %>
-        <%= errors_for @page, :kind %>
+  <div class="card">
+
+    <div class="card-body">
+      <div class="form-group">
+        <%= f.label :kind, 'Design Template' %>
+        <div>
+          <%= f.select :kind, @partials.collect { |p| [p, p] } , include_blank: false, class: 'form-control' %>
+          <%= errors_for @page, :kind %>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :navigation_type, 'Navigation Type' %>
-      <div>
-        <%= f.select :navigation_type, [['main', 'main'], ['footer', 'footer']], include_blank: false, class: 'form-control' %>
-        <%= errors_for @page, :navigation_type %>
+      <div class="form-group">
+        <%= f.label :navigation_type, 'Navigation Type' %>
+        <div>
+          <%= f.select :navigation_type, [['main', 'main'], ['footer', 'footer']], include_blank: false, class: 'form-control' %>
+          <%= errors_for @page, :navigation_type %>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :status, "Online" %>
-      <div>
-        <%= f.check_box :status %>
-        <%= errors_for @page, :status %>
+      <div class="form-group">
+        <%= f.label :status, "Online" %>
+        <div>
+          <%= f.check_box :status %>
+          <%= errors_for @page, :status %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :is_news, "Display on landing page" %>
+        <div>
+          <%= f.check_box :is_news %>
+          <%= errors_for @page, :is_news %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :ancestry, "Select parent page" %>
+        <div>
+          <%= f.select :ancestry, WebiniusCms::Page.all.map { |page| [set_lang(page, "title"), page.id] }, include_blank: true, class: 'form-control' %>
+          <%= errors_for @page, :ancestry %>
+        </div>
       </div>
     </div>
 
   </div>
+
+  <br>
 
   <div class="form-actions">
     <%= f.button 'Save', class: 'btn btn-info' %>

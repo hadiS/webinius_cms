@@ -1,35 +1,33 @@
-
 <% if flash[:notice] %>
-  <div class="col-xs-offset-2 alert alert-success">
+  <div class="col alert alert-success">
     <%= flash[:notice] %>
   </div>
 <% end %>
 
 <% if flash[:error] %>
-  <div class="col-xs-offset-2 alert alert-error">
+  <div class="col alert alert-danger">
     <%= flash[:error] %>
   </div>
 <% end %>
-
-
+  
 <%= form_tag sessions_path, class: 'form-horizontal' do %>
 
   <div class="form-group">
-    <%= label_tag :username, 'Username', class: "col-xs-2 control-label", for: 'inputUsername' %>
-    <div class="col-xs-5">
+    <%= label_tag :username, 'Username', class: "col control-label", for: 'inputUsername' %>
+    <div class="col-4">
       <%= text_field_tag :username, '', {class: 'form-control'} %>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-xs-2 control-label" for="inputPassword"><%= label_tag :password %></label>
-    <div class="col-xs-5">
+    <label class="col control-label" for="inputPassword"><%= label_tag :password %></label>
+    <div class="col-4">
       <%= password_field_tag :password, '', {class: 'form-control'} %>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="col-xs-offset-2 col-sm-10">
+    <div class="col">
       <button type="submit" class="btn btn-default">Sign in</button>
     </div>
   </div>

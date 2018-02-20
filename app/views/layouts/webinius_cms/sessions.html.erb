@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    "webinius_cms/login", media: "all", 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag "webinius_cms/admin", 'data-turbolinks-track': 'reload' %>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -17,7 +17,7 @@
 
       <div class='row content'>
 
-        <div class="col-xs-12">
+        <div class="col">
           <%= yield %>
         </div>
 

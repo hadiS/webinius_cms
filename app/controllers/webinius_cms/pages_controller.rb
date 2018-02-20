@@ -44,6 +44,8 @@ module WebiniusCms
           format.html { redirect_to pages_url, notice: 'New Page was created.' }
           format.json { render action: 'show', status: :created, location: @page }
         else
+          @page.documents.build unless @page.documents.any?
+          @page.images.build unless @page.images.any?
           format.html { render action: 'new' }
           format.json { render json: @page.errors, status: :unprocessable_entity }
         end
