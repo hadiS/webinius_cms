@@ -1,4 +1,4 @@
-class CreateWebiniusCmsListItems < ActiveRecord::Migration
+class CreateWebiniusCmsListItems < ActiveRecord::Migration[5.1]
   def change
     create_table :webinius_cms_list_items do |t|
       t.boolean :status

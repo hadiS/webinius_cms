@@ -1,4 +1,4 @@
-class CreateWebiniusCmsLanguages < ActiveRecord::Migration
+class CreateWebiniusCmsLanguages < ActiveRecord::Migration[5.1]
   def change
     create_table :webinius_cms_languages do |t|
       t.string :name

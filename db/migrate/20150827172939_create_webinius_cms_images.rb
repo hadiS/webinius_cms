@@ -1,4 +1,4 @@
-class CreateWebiniusCmsImages < ActiveRecord::Migration
+class CreateWebiniusCmsImages < ActiveRecord::Migration[5.1]
   def change
     create_table :webinius_cms_images do |t|
       t.string :title

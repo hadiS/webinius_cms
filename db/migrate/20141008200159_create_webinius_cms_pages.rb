@@ -1,4 +1,4 @@
-class CreateWebiniusCmsPages < ActiveRecord::Migration
+class CreateWebiniusCmsPages < ActiveRecord::Migration[5.1]
   def change
     create_table :webinius_cms_pages do |t|
       t.boolean :status

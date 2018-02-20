@@ -1,4 +1,4 @@
-class CreateWebiniusCmsUsers < ActiveRecord::Migration
+class CreateWebiniusCmsUsers < ActiveRecord::Migration[5.1]
   def change
     create_table :webinius_cms_users do |t|
       t.string :password_digest
