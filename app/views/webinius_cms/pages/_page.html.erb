@@ -3,7 +3,6 @@
   <td><%= content_tag(:span, '', :class => 'glyphicon glyphicon-ok') if page.status %></td>
   <td><%= page.navigation_type %></td>
   <td class='text-right'>
-    <%= link_to image_tag('open-iconic/svg/plus.svg', class: "icon-sm") + ' Add', new_page_path(parent_id: page.id), :class => 'btn btn-sm btn-success' %>
     <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_page_path(page.id), :class => 'btn btn-sm btn-info' %>
     <%= link_to image_tag('open-iconic/svg/arrow-thick-top.svg', class: "icon-sm"), higher_page_path(page.id), :class => 'btn btn-sm' %>
     <%= link_to image_tag('open-iconic/svg/arrow-thick-bottom.svg', class: "icon-sm"), lower_page_path(page.id), :class => 'btn btn-sm' %>

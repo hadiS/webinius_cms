@@ -38,6 +38,8 @@ module WebiniusCms
       if @list_item.save
         redirect_to list_list_items_url, notice: 'List item was successfully created.'
       else
+        @list_item.documents.build unless @list_item.documents.any?
+        @list_item.images.build unless @list_item.images.any?
         render :new
       end
     end
@@ -47,6 +49,8 @@ module WebiniusCms
       if @list_item.update(list_item_params)
         redirect_to list_list_items_url, notice: 'List item was successfully updated.'
       else
+        @list_item.documents.build unless @list_item.documents.any?
+        @list_item.images.build unless @list_item.images.any?
         render :edit
       end
     end

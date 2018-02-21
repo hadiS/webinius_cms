@@ -1,13 +1,12 @@
-<div class="page-header">
-  <h3>Users</h3>
-</div>
+<h2>Users</h2>
+<br>
 
-<table class='table pages'>
-  <thead>
-    <tr class='info info'>
-      <th class='title'>Name</th>
-      <th class='status'>Username</th>
-      <th class='actions'>Action</th>
+<table class='table table-sm'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col-3">Name</th>
+      <th scope="col">Username</th>
+      <th scope="col" class='text-right'></th>
     </tr>
   </thead>
 
@@ -16,16 +15,14 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.username %></td>
-        <td>
-          <%= link_to content_tag(:i, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_user_path(user), :class => 'btn btn-xs btn-info' %>
-          <%= link_to content_tag(:i, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', user, :class => 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Are you sure?' } if user.name != 'admin' %>
+        <td class='text-right'>
+          <%= link_to content_tag(:i, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_user_path(user), :class => 'btn btn-sm btn-info' %>
+          <%= link_to content_tag(:i, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', user, :class => 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' } if user.name != 'admin' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'Create new user', new_user_path, :class => 'btn btn-success' %>
-

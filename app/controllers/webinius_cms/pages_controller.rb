@@ -56,6 +56,7 @@ module WebiniusCms
     # PATCH/PUT /pages/1.json
     def update
       @page.docs = params[:page][:docs] if params[:page][:docs].present?
+      @page.ancestry = nil
       respond_to do |format|
         if @page.update(page_params)
           format.html { redirect_to pages_url, notice: 'Page was updated successfully.' }

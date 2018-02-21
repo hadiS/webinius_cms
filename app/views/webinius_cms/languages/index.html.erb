@@ -1,15 +1,14 @@
-<div class="page-header">
-  <h3>Languages</h3>
-</div>
+<h2>Languages</h2>
+<br>
 
-<table class='table pages'>
-  <thead>
-    <tr class='info'>
-      <th class='title'>Language</th>
-      <th class='status'>Language Code</th>
-      <th class='status'>Online</th>
-      <th class='status'>Default</th>
-      <th class='actions'>Action</th>
+<table class='table table-sm'>
+  <thead class="thead-dark">
+    <tr class=''>
+      <th scope="col-3">Language</th>
+      <th scope="col">Language Code</th>
+      <th scope="col">Active</th>
+      <th scope="col">Default</th>
+      <th scope="col" class='text-right'></th>
     </tr>
   </thead>
 
@@ -18,17 +17,16 @@
       <tr>
         <td><%= language.name %></td>
         <td><%= language.code %></td>
-        <td><%= content_tag(:i, '', :class => 'glyphicon glyphicon-ok') if language.status %></td>
-        <td><%= content_tag(:i, '', :class => 'glyphicon glyphicon-ok') if language.default %></td>
-        <td>
-          <%= link_to content_tag(:i, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_language_path(language), :class => 'btn btn-xs btn-info' %>
-          <%= link_to content_tag(:i, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', language, :class => 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+        <td><%= image_tag('open-iconic/svg/check.svg', class: "icon-sm") if language.status %></td>
+        <td><%= image_tag('open-iconic/svg/check.svg', class: "icon-sm") if language.default %></td>
+        <td class='text-right'>
+          <%= link_to 'Update', edit_language_path(language), :class => 'btn btn-sm btn-info' %>
+          <%= link_to 'Delete', language, :class => 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'Add new language', new_language_path, :class => 'btn btn-success' %>

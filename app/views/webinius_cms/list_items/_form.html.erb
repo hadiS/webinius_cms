@@ -6,146 +6,178 @@
     </div>
   <% end %>
 
-  <div class="well">
+  <div class="card">
 
-    <ul class="nav nav-tabs">
-      <% WebiniusCms::Language.all.each do |lang| %>
-        <li class="<%= 'active' if lang.code == 'de' %>"><a href="#<%= lang.name %>" data-toggle="tab"><%= lang.name %></a></li>
-      <% end %>
-    </ul>
-    <div class="tab-content">
-      <% WebiniusCms::Language.all.each do |lang| %>
-        <div class="tab-pane <%= 'active' if lang.code == 'de' %>" id="<%= lang.name %>">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <% WebiniusCms::Language.all.each do |lang| %>
+          <li class="nav-item"><a href="#<%= lang.name %>" class="nav-link <%= 'active' if lang.code == 'de' %>" data-toggle="tab"><%= lang.name %></a></li>
+        <% end %>
+      </ul>
+    </div>
 
-          <div class="form-group">
-            <%= f.label :"#{lang.code}_title", 'Name' %>
-            <div>
-              <%= f.text_field :"#{lang.code}_title", class: 'form-control' %>
-              <%= errors_for @list_item, :"#{lang.code}_title" %>
+    <div class="card-body">
+      <div class="tab-content">
+        <% WebiniusCms::Language.all.each do |lang| %>
+          <div class="tab-pane <%= 'active' if lang.code == 'de' %>" id="<%= lang.name %>">
+
+            <div class="form-group">
+              <%= f.label :"#{lang.code}_title", 'Name' %>
+              <div>
+                <%= f.text_field :"#{lang.code}_title", class: 'form-control' %>
+                <%= errors_for @list_item, :"#{lang.code}_title" %>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <%= f.label :"#{lang.code}_description", 'Description' %>
-            <div>
-              <%= f.text_area :"#{lang.code}_description", rows: 6, class: 'form-control' %>
-              <%= errors_for @list_item, :"#{lang.code}_description" %>
+            <div class="form-group">
+              <%= f.label :"#{lang.code}_description", 'Description' %>
+              <div>
+                <%= f.text_area :"#{lang.code}_description", rows: 6, class: 'form-control' %>
+                <%= errors_for @list_item, :"#{lang.code}_description" %>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <%= f.label :"#{lang.code}_content", "Text" %>
-            <div>
-              <%= f.hidden_field :"#{lang.code}_content", class: 'text form-control', value: f.object.send(:"#{lang.code}_content") %>
-              <trix-editor input="list_item_<%= lang.code %>_content" class='trix-content'></trix-editor>
+            <div class="form-group">
+              <%= f.label :"#{lang.code}_content", "Text" %>
+              <div>
+                <%= f.hidden_field :"#{lang.code}_content", class: 'text form-control', value: f.object.send(:"#{lang.code}_content") %>
+                <trix-editor input="list_item_<%= lang.code %>_content" class='trix-content'></trix-editor>
 
-              <%= errors_for @list_item, :"#{lang.code}_content" %>
+                <%= errors_for @list_item, :"#{lang.code}_content" %>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <%= f.label :"#{lang.code}_meta_description", "Meta description" %>
-            <div>
-              <%= f.text_field :"#{lang.code}_meta_description", class: 'form-control' %>
-              <%= errors_for @list_item, :"#{lang.code}_meta_description" %>
+            <div class="form-group">
+              <%= f.label :"#{lang.code}_meta_description", "Meta description" %>
+              <div>
+                <%= f.text_field :"#{lang.code}_meta_description", class: 'form-control' %>
+                <%= errors_for @list_item, :"#{lang.code}_meta_description" %>
+              </div>
             </div>
-          </div>
 
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+
+  <div class="card">
+    <div class="card-header">
+      Page Image
+    </div>
+
+    <div class="card-body">
+      <div class="form-group">
+        
+        <%= f.label :picture, 'Image' %>
+        <div>
+          <%= f.file_field :picture %>
+          <%= f.hidden_field :picture_cache %>
+          <%= errors_for @list_item, :picture %>
         </div>
-      <% end %>
-    </div>
+      </div>
 
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :remove_picture %> Remove Image
+        </label>
+      </div>
+      <%= image_tag @list_item.picture.thumb.url if @list_item.picture? %>
+    </div>
   </div>
 
-  <div class="well">
-    <div class="form-group">
-      <%= f.label :is_news, "Use in News-Box" %>
-      <div>
-        <%= f.check_box :is_news %>
-        <%= errors_for @list_item, :is_news %>
+  <br>
+
+  <div class="card">
+    <div class="card-header">
+      Gallery
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <%= f.fields_for :images do |builder| %>
+          <%= render 'webinius_cms/pages/image_fields', f: builder %>
+        <% end %>
       </div>
     </div>
   </div>
 
-  <div class="well">
-    <div class="form-group">
-      <%= f.label :picture, 'Image' %>
-      <div>
-        <%= f.file_field :picture %>
-        <%= f.hidden_field :picture_cache %>
-        <%= errors_for @list_item, :picture %>
-      </div>
+  <br>
+
+  <div class="card">
+    <div class="card-header">
+      File Downloads
     </div>
 
-    <div class="checkbox">
-      <label>
-        <%= f.check_box :remove_picture %> Remove Image
-      </label>
-    </div>
-    <%= image_tag @list_item.picture.thumb.url if @list_item.picture? %>
-  </div>
-
-  <div class="well">
-    <div class="form-group">
-      <h4>Gallery</h4>
-
-      <%= f.fields_for :images do |builder| %>
-        <%= render 'webinius_cms/pages/image_fields', f: builder %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="well">
-    <span><strong>Downloads</strong></span>
-
+    <div class="card-body">
       <%= f.fields_for :documents do |document| %>
+        <% if document.object.new_record? %>
 
-          <% if document.object.new_record? %>
+          <div>Add new file</div>
+          <div class="form-group">
+            <div>
+              <%= document.file_field :document %>
+              <%= document.hidden_field :document_cache %>
+            </div>
+          </div>
 
-            <br>
-            <div><strong>Add new file</strong></div>
-            <div class="form-group">
-              <div>
-                <%= document.file_field :document %>
-                <%= document.hidden_field :document_cache %>
+          <div class="form-group">
+            <%= document.label :name, 'Name' %>
+            <div>
+              <%= document.text_field :name, class: 'form-control' %>
+              <%= errors_for document.object, :name %>
+            </div>
+          </div>
+
+        <% else %>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="checkbox">
+                <%= link_to document_path(document.object) do %>
+                  <%= image_tag('open-iconic/svg/file.svg', class: "icon-sm") %> <%= document.object.name %>
+                <% end %>
+                <label class='horizontal-space'>
+                  <%= document.check_box :_destroy %> Remove Document
+                </label>
               </div>
             </div>
-
-            <div class="form-group">
-              <%= document.label :name, 'Name' %>
-              <div>
-                <%= document.text_field :name, class: 'form-control' %>
-                <%= errors_for document.object, :name %>
-              </div>
-            </div>
-
-          <% else %>
-
-            <div class="checkbox">
-              <%= link_to document_path(document.object) do %>
-                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= document.object.name %>
-              <% end %>
-              <label class='horizontal-space'>
-                <%= document.check_box :_destroy %> Remove Document
-              </label>
-            </div>
-
-          <% end %>
-
+          </div>
+          
+        <% end %>
       <% end %>
+    </div>
   </div>
 
-  <div class="well">
+  <br>
 
-    <div class="form-group">
-      <%= f.label :status, "Online" %>
-      <div>
-        <%= f.check_box :status %>
-        <%= errors_for @list_item, :status %>
+  <div class="card">
+
+    <div class="card-body">
+
+      <div class="form-group">
+        <%= f.label :status, "Online" %>
+        <div>
+          <%= f.check_box :status %>
+          <%= errors_for @list_item, :status %>
+        </div>
       </div>
+
+      <div class="form-group">
+        <%= f.label :is_news, "Display on landing page" %>
+        <div>
+          <%= f.check_box :is_news %>
+          <%= errors_for @list_item, :is_news %>
+        </div>
+      </div>
+
     </div>
 
   </div>
+
+  <br>
 
   <div class="form-actions">
     <%= f.button 'Save', class: 'btn btn-info' %>

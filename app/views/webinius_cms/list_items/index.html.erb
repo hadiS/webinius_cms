@@ -1,32 +1,30 @@
-<div class="page-header">
-  <h3>List Items</h3>
-</div>
+<h2>List Items</h2>
+<br>
 
-<table class='table pages'>
-  <thead>
-    <tr class='info'>
-      <th class='title'>Title</th>
-      <th class='status'>Online</th>
-      <th class='actions'>Action</th>
+<table class='table table-sm'>
+  <thead class="thead-dark">
+    <tr class=''>
+      <th scope="col-3">Title</th>
+      <th scope="col">Online</th>
+      <th scope="col" class='text-right'></th>
     </tr>
   </thead>
 
   <tbody>
     <% @list_items.each do |list_item| %>
       <tr>
-        <td style="padding-left: 8px"><%= list_item.properties["#{I18n.locale}_title"] %></td>
-        <td><%= content_tag(:span, '', :class => 'glyphicon glyphicon-ok') if list_item.status %></td>
-        <td>
-          <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_list_list_item_path(@list, list_item), :class => 'btn btn-xs btn-info' %>
-          <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', list_list_item_path(@list, list_item), :class => 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
-          <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-up'), higher_list_list_item_path(@list, list_item), :class => 'btn btn-xs' %>
-          <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-arrow-down'), lower_list_list_item_path(@list, list_item), :class => 'btn btn-xs' %>
+        <td><%= list_item.properties["#{I18n.locale}_title"] %></td>
+        <td><%= image_tag('open-iconic/svg/check.svg') if list_item.status %></td>
+        <td class='text-right'>
+          <%= link_to 'Update', edit_list_list_item_path(@list, list_item), :class => 'btn btn-sm btn-info' %>
+          <%= link_to 'Delete', list_list_item_path(@list, list_item), :class => 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to image_tag('open-iconic/svg/arrow-thick-top.svg', class: "icon-sm"), higher_list_list_item_path(@list, list_item), class: 'btn btn-sm' %>
+          <%= link_to image_tag('open-iconic/svg/arrow-thick-bottom.svg', class: "icon-sm"), lower_list_list_item_path(@list, list_item), class: 'btn btn-sm' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'Create new list item', new_list_list_item_path(@list), :class => 'btn btn-success' %>
