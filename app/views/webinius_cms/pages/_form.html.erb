@@ -163,9 +163,9 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :navigation_type, 'Navigation Type' %>
+        <%= f.label :navigation_type, 'Page Type' %>
         <div>
-          <%= f.select :navigation_type, [['main', 'main'], ['footer', 'footer']], include_blank: false, class: 'form-control' %>
+          <%= f.select :navigation_type, [['main', 'main'], ['single-page', 'single-page'], ['footer', 'footer']], include_blank: false, class: 'form-control' %>
           <%= errors_for @page, :navigation_type %>
         </div>
       </div>

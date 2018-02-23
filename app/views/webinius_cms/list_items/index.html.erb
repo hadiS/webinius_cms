@@ -14,7 +14,7 @@
     <% @list_items.each do |list_item| %>
       <tr>
         <td><%= list_item.properties["#{I18n.locale}_title"] %></td>
-        <td><%= image_tag('open-iconic/svg/check.svg') if list_item.status %></td>
+        <td><%= image_tag('open-iconic/svg/check.svg', class: "icon-sm") if list_item.status %></td>
         <td class='text-right'>
           <%= link_to 'Update', edit_list_list_item_path(@list, list_item), :class => 'btn btn-sm btn-info' %>
           <%= link_to 'Delete', list_list_item_path(@list, list_item), :class => 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>

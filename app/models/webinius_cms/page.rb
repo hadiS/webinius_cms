@@ -47,7 +47,7 @@ module WebiniusCms
 
     def generate_slug
       Language.all.each do |lang|
-        self.properties = (properties || {}).merge("#{lang.code}_slug" => (self.ancestors + [self]).map{ |page| page.send(:"#{lang.code}_title").parameterize }.compact.join("/"))
+        self.properties = (properties || {}).merge("#{lang.code}_slug" => (self.ancestors + [self]).map{ |page| (page.navigation_type != 'single-page') ? page.send(:"#{lang.code}_title").parameterize : nil }.compact.join("/"))
       end
     end
 

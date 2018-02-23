@@ -1,11 +1,11 @@
 <tr>
   <td class='col-4' style="padding-left: <%= page.depth == 0 ? 'inherited' : page.depth * 30 %>px" ><%= page.properties["#{I18n.locale}_title"] %></td>
-  <td><%= content_tag(:span, '', :class => 'glyphicon glyphicon-ok') if page.status %></td>
+  <td><%= image_tag('open-iconic/svg/check.svg', class: "icon-sm") if page.status %></td>
   <td><%= page.navigation_type %></td>
   <td class='text-right'>
-    <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-pencil')+' Update', edit_page_path(page.id), :class => 'btn btn-sm btn-info' %>
+    <%= link_to 'Update', edit_page_path(page.id), :class => 'btn btn-sm btn-info' %>
     <%= link_to image_tag('open-iconic/svg/arrow-thick-top.svg', class: "icon-sm"), higher_page_path(page.id), :class => 'btn btn-sm' %>
     <%= link_to image_tag('open-iconic/svg/arrow-thick-bottom.svg', class: "icon-sm"), lower_page_path(page.id), :class => 'btn btn-sm' %>
-    <%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove-sign')+' Delete', page_path(page.id), :class => 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Delete', page_path(page.id), :class => 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
   </td>
 </tr>
