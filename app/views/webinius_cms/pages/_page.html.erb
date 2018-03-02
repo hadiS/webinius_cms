@@ -1,5 +1,5 @@
 <tr>
-  <td class='col-4' style="padding-left: <%= page.depth == 0 ? 'inherited' : page.depth * 30 %>px" ><%= page.properties["#{I18n.locale}_title"] %></td>
+  <td class='' style="padding-left: <%= page.depth == 0 ? 'inherited' : page.depth * 30 %>px" ><%= page.properties["#{I18n.locale}_title"] %></td>
   <td><%= image_tag('open-iconic/svg/check.svg', class: "icon-sm") if page.status %></td>
   <td><%= page.navigation_type %></td>
   <td class='text-right'>
